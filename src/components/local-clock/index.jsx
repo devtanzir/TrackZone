@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import ClockDisplay from "../shared/clock-display";
 import ClockActions from "../shared/clock-actions";
 import useClock from "../../hooks/useClock";
+import useTimer from "../../hooks/useTimer";
+import styled from "styled-components";
 
 const LocalClock = ({ clock, UpdateLocalClock, createClock }) => {
   const { date, timezone, offset } = useClock(clock.timezone, clock.offset);
@@ -14,11 +16,15 @@ const LocalClock = ({ clock, UpdateLocalClock, createClock }) => {
     });
   }, [date]);
 
+  const timer = useTimer(date);
+
+  if (!date || !timer) return;
+
   return (
-    <div>
-      {date && (
+    <LocalClockWrapper>
+      {timer && (
         <ClockDisplay
-          date={date}
+          date={timer}
           title={clock.title}
           timezone={timezone}
           offset={offset}
@@ -31,8 +37,15 @@ const LocalClock = ({ clock, UpdateLocalClock, createClock }) => {
         updateClock={UpdateLocalClock}
         createClock={createClock}
       />
-    </div>
+    </LocalClockWrapper>
   );
 };
 
 export default LocalClock;
+
+const LocalClockWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 20px 0;
+`;

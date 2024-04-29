@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import LocalClock from "../components/local-clock";
 import ClockList from "../components/clock-list";
 import { generateId } from "../utils/Id_Generator/GenerateId";
-
+import styled from "styled-components";
 const LOCAL_CLOCK_INIT = {
   title: "My Clock",
   timezone: "",
@@ -13,6 +13,7 @@ const LOCAL_CLOCK_INIT = {
 const App = () => {
   const [localClock, setLocalClock] = useState({ ...LOCAL_CLOCK_INIT });
   const [clocks, setClocks] = useState([]);
+
   const UpdateLocalClock = (data) => {
     setLocalClock((prev) => ({
       ...prev,
@@ -24,7 +25,6 @@ const App = () => {
     setClocks((prev) => [clock, ...prev]);
   };
   const updateClock = (updateData) => {
-    console.log("from app", updateData.id);
     const updatedData = clocks.map((clock) => {
       if (clock.id === updateData.id) {
         return updateData;
@@ -38,21 +38,25 @@ const App = () => {
     setClocks(updatedData);
   };
   return (
-    <div>
+    <MainWrapper>
       <LocalClock
         clock={localClock}
         UpdateLocalClock={UpdateLocalClock}
         createClock={createClock}
       />
-      <hr />
       <ClockList
         localClock={localClock.date}
         clocks={clocks}
         updateClock={updateClock}
         deleteClock={deleteClock}
       />
-    </div>
+    </MainWrapper>
   );
 };
 
 export default App;
+
+const MainWrapper = styled.div`
+  width: 90%;
+  margin: 0 auto;
+`;

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import ClockForm from "../clock-form";
-
+import Button from "../../ui/button/button";
+import styled from "styled-components";
+import Modal from "../modal/modal";
 const ClockActions = ({
   local = false,
   clock,
@@ -11,38 +13,52 @@ const ClockActions = ({
   const [isEdit, setIsEdit] = useState(false);
   const [isCreate, setIsCreate] = useState(false);
 
+  const handleModal = () => {
+    setIsCreate(!isCreate);
+  };
+  const handleEditModal = () => {
+    setIsEdit(!isEdit);
+  };
+
   const handleClock = (values) => {
     createClock(values);
   };
   return (
-    <div>
-      <button onClick={() => setIsEdit(!isEdit)}>
-        {isEdit ? "DONE" : "Edit"}
-      </button>
+    <ButtonWrapper>
+      <Button onClick={() => setIsEdit(!isEdit)}>Edit</Button>
       {local ? (
-        <button onClick={() => setIsCreate((prev) => !prev)}>Create</button>
+        <Button onClick={() => setIsCreate((prev) => !prev)}>Create</Button>
       ) : (
-        <button onClick={() => deleteClock(clock.id)}>Delete</button>
+        <Button onClick={() => deleteClock(clock.id)}>Delete</Button>
       )}
       {isEdit && (
         <>
-          <h4>Edit Form</h4>
+          {/* <h4>Edit Form</h4>
           <ClockForm
             values={clock}
             handleClock={updateClock}
+            title={!local}
+            edit={true}
+          /> */}
+          <Modal
+            handleModal={handleEditModal}
+            handleClock={updateClock}
+            values={clock}
             title={!local}
             edit={true}
           />
         </>
       )}
       {isCreate && (
-        <>
-          <h4>Create a New Clock</h4>
-          <ClockForm handleClock={handleClock} />
-        </>
+        <Modal handleModal={handleModal} createForm handleClock={handleClock} />
       )}
-    </div>
+    </ButtonWrapper>
   );
 };
 
 export default ClockActions;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 10px;
+`;

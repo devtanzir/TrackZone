@@ -1,7 +1,11 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Concert One", sans-serif;
+  font-weight: 400;
+}
+body{
+  background-color: #dfe4ea;
 }
