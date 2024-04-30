@@ -4,7 +4,8 @@ import { generateId } from "../utils/Id_Generator/GenerateId";
 const useEvent = () => {
   const [state, setState] = useState({});
   const getEventsByClockId = (clockId) => {
-    return Object.keys(state).filter((item) => item.startsWith(clockId));
+    const keys = Object.keys(state).filter((item) => item.startsWith(clockId));
+    return keys.map((item) => state[item]);
   };
   const getEvents = (isArray = false) => {
     if (!isArray) return state;

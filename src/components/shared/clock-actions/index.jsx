@@ -33,13 +33,6 @@ const ClockActions = ({
       )}
       {isEdit && (
         <>
-          {/* <h4>Edit Form</h4>
-          <ClockForm
-            values={clock}
-            handleClock={updateClock}
-            title={!local}
-            edit={true}
-          /> */}
           <Modal
             handleModal={handleEditModal}
             handleClock={updateClock}
@@ -60,5 +53,7 @@ export default ClockActions;
 
 const ButtonWrapper = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 3px;
+  justify-content: space-between;
+  margin: 10px 0;
 `;

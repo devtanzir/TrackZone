@@ -1,9 +1,19 @@
 import React, { useState } from "react";
-import Button from "../ui/button/button";
+import {
+  Input,
+  InputGroup,
+  InputWrapper,
+  Label,
+  ModalForm,
+  ModalFormTitle,
+  SubmitBtn,
+} from "../ui/button/AllFormItem";
 
 const EventForm = ({
   values = { title: "", startDate: "", endDate: "" },
   handleEvent,
+  handleModal,
+  createEvent,
 }) => {
   const [events, setEvents] = useState({ ...values });
   const handleChange = (e) => {
@@ -16,41 +26,47 @@ const EventForm = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     handleEvent(events);
+    handleModal();
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="title">Enter Title</label>
-        <input
-          type="text"
-          name="title"
-          id="title"
-          value={events.title}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="startDate">Enter Start date</label>
-        <input
-          type="date"
-          name="startDate"
-          id="startDate"
-          value={events.startDate}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="endDate">Enter End date</label>
-        <input
-          type="date"
-          name="endDate"
-          id="endDate"
-          value={events.endDate}
-          onChange={handleChange}
-        />
-      </div>
-      <Button type="submit">Create</Button>
-    </form>
+    <ModalForm onSubmit={handleSubmit}>
+      <ModalFormTitle>
+        {createEvent ? "Create Event" : "Edit Event"}
+      </ModalFormTitle>
+      <InputWrapper>
+        <InputGroup>
+          <Label htmlFor="title">Enter Title</Label>
+          <Input
+            type="text"
+            name="title"
+            id="title"
+            value={events.title}
+            onChange={handleChange}
+          />
+        </InputGroup>
+        <InputGroup>
+          <Label htmlFor="startDate">Enter Start date</Label>
+          <Input
+            type="date"
+            name="startDate"
+            id="startDate"
+            value={events.startDate}
+            onChange={handleChange}
+          />
+        </InputGroup>
+        <InputGroup>
+          <Label htmlFor="endDate">Enter End date</Label>
+          <Input
+            type="date"
+            name="endDate"
+            id="endDate"
+            value={events.endDate}
+            onChange={handleChange}
+          />
+        </InputGroup>
+      </InputWrapper>
+      <SubmitBtn type="submit">Create</SubmitBtn>
+    </ModalForm>
   );
 };
 

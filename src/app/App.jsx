@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LocalClock from "../components/local-clock";
 import ClockList from "../components/clock-list";
 import { generateId } from "../utils/Id_Generator/GenerateId";
 import styled from "styled-components";
+import useEvent from "../hooks/useEvent";
 const LOCAL_CLOCK_INIT = {
   title: "My Clock",
   timezone: "",
@@ -13,6 +14,15 @@ const LOCAL_CLOCK_INIT = {
 const App = () => {
   const [localClock, setLocalClock] = useState({ ...LOCAL_CLOCK_INIT });
   const [clocks, setClocks] = useState([]);
+
+  const { addEvent, events, getEventsByClockId, getEvents } = useEvent();
+
+  // useEffect(() => {
+  //   // const clockEvents = getEventsByClockId(clocks.id);
+  //   // console.log("clock events", clockEvents);
+  //   console.log("all events", events);
+  //   console.log("get events", getEvents());
+  // }, [events]);
 
   const UpdateLocalClock = (data) => {
     setLocalClock((prev) => ({
@@ -46,6 +56,8 @@ const App = () => {
       />
       <ClockList
         localClock={localClock.date}
+        addEvent={addEvent}
+        getEventsByClockId={getEventsByClockId}
         clocks={clocks}
         updateClock={updateClock}
         deleteClock={deleteClock}
