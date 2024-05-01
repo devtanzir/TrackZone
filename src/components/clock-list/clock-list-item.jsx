@@ -4,11 +4,8 @@ import ClockActions from "../shared/clock-actions";
 import ClockDisplay from "../shared/clock-display";
 import useTimer from "../../hooks/useTimer";
 import CreateEvent from "../clock-events";
-import useEvent from "../../hooks/useEvent";
-import { useEffect, useState } from "react";
 import ShowEvents from "../clock-events/show-events";
 import styled from "styled-components";
-import Button from "../ui/button/button";
 
 const ClockListItem = ({
   clock,
@@ -19,7 +16,6 @@ const ClockListItem = ({
   addEvent,
 }) => {
   const { date } = useClock(clock.timezone, clock.offset);
-  const [show, setShow] = useState(false);
 
   const timer = useTimer(date);
 
@@ -42,17 +38,12 @@ const ClockListItem = ({
             deleteClock={deleteClock}
           />
           <CreateEvent clockId={clock.id} addClock={addEvent} />
-          <Button onClick={() => setShow(!show)}>Show Event</Button>
+          <ShowEvents
+            getEventsByClockId={getEventsByClockId}
+            clockId={clock.id}
+          />
         </ThreeBtn>
       </ClockItemWrapper>
-      {show && (
-        <ul>
-          <h5>all events</h5>
-          {getEventsByClockId(clock.id).map((item) => (
-            <li key={item.id}> {item.title}</li>
-          ))}
-        </ul>
-      )}
     </Wrapper>
   );
 };

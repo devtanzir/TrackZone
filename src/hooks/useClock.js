@@ -14,7 +14,7 @@ const useClock = (timezone, offset) => {
     d = addMinutes(d, lo);
     setUtc(d);
     setLocalOffset(lo);
-  }, []);
+  }, [1000]);
 
   useEffect(() => {
     if (utc !== null) {

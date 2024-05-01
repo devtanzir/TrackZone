@@ -4,7 +4,20 @@ export const Input = styled.input`
   display: block;
   padding: 0.75rem;
   border-radius: 0.5rem;
-  outline-style: none;
+  outline: none;
+  font-size: 18px;
+  width: 100%;
+  background-color: #ffffff;
+  filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04))
+    drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
+`;
+export const TextArea = styled.textarea`
+  height: 90px;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  resize: none;
+  border: 2px solid;
+  outline: none;
   font-size: 18px;
   width: 100%;
   background-color: #ffffff;

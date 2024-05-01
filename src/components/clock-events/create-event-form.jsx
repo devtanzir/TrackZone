@@ -7,10 +7,11 @@ import {
   ModalForm,
   ModalFormTitle,
   SubmitBtn,
+  TextArea,
 } from "../ui/button/AllFormItem";
 
 const EventForm = ({
-  values = { title: "", startDate: "", endDate: "" },
+  values = { title: "", des: "", startDate: "", endDate: "" },
   handleEvent,
   handleModal,
   createEvent,
@@ -45,9 +46,18 @@ const EventForm = ({
           />
         </InputGroup>
         <InputGroup>
+          <Label htmlFor="des">Event Details</Label>
+          <TextArea
+            name="des"
+            id="des"
+            value={events.des}
+            onChange={handleChange}
+          ></TextArea>
+        </InputGroup>
+        <InputGroup>
           <Label htmlFor="startDate">Enter Start date</Label>
           <Input
-            type="date"
+            type="datetime-local"
             name="startDate"
             id="startDate"
             value={events.startDate}
@@ -57,7 +67,7 @@ const EventForm = ({
         <InputGroup>
           <Label htmlFor="endDate">Enter End date</Label>
           <Input
-            type="date"
+            type="datetime-local"
             name="endDate"
             id="endDate"
             value={events.endDate}

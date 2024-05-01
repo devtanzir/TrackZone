@@ -1,16 +1,21 @@
 import React, { useState } from "react";
-import EventItem from "./event-item";
 import Button from "../ui/button/button";
+import Modal from "../shared/modal/modal";
 
-const ShowEvents = ({ events, getEventsByClockId, clockId }) => {
+const ShowEvents = ({ getEventsByClockId, clockId }) => {
   const [show, setShow] = useState(false);
+
+  const handleShow = () => {
+    setShow(!show);
+  };
 
   return (
     <>
       <Button onClick={() => setShow(!show)}>Show Event</Button>
       {show && (
-        <EventItem
-          Event={events}
+        <Modal
+          handleShow={handleShow}
+          showEvent
           getEventsByClockId={getEventsByClockId}
           clockId={clockId}
         />

@@ -36,6 +36,7 @@ const ClockActions = ({
           <Modal
             handleModal={handleEditModal}
             handleClock={updateClock}
+            isCreateForm
             values={clock}
             title={!local}
             edit={true}
@@ -43,7 +44,12 @@ const ClockActions = ({
         </>
       )}
       {isCreate && (
-        <Modal handleModal={handleModal} createForm handleClock={handleClock} />
+        <Modal
+          handleModal={handleModal}
+          createForm
+          handleClock={handleClock}
+          isCreateForm
+        />
       )}
     </ButtonWrapper>
   );

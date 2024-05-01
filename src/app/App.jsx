@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import LocalClock from "../components/local-clock";
 import ClockList from "../components/clock-list";
 import { generateId } from "../utils/Id_Generator/GenerateId";
@@ -16,13 +16,6 @@ const App = () => {
   const [clocks, setClocks] = useState([]);
 
   const { addEvent, events, getEventsByClockId, getEvents } = useEvent();
-
-  // useEffect(() => {
-  //   // const clockEvents = getEventsByClockId(clocks.id);
-  //   // console.log("clock events", clockEvents);
-  //   console.log("all events", events);
-  //   console.log("get events", getEvents());
-  // }, [events]);
 
   const UpdateLocalClock = (data) => {
     setLocalClock((prev) => ({
