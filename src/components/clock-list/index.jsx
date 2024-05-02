@@ -8,6 +8,8 @@ const ClockList = ({
   getEventsByClockId,
   localClock,
   addEvent,
+  deleteEvent,
+  updateEvent,
 }) => {
   return (
     <Wrapper>
@@ -20,6 +22,8 @@ const ClockList = ({
             localClock={localClock}
             getEventsByClockId={getEventsByClockId}
             addEvent={addEvent}
+            deleteEvent={deleteEvent}
+            updateEvent={updateEvent}
             clock={clock}
             updateClock={updateClock}
             deleteClock={deleteClock}

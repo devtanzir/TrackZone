@@ -1,24 +1,37 @@
-import React from "react";
-import Button from "../ui/button/button";
+import React, { useState } from "react";
 import StartEvent from "./startEvent";
 import styled from "styled-components";
+import EventEdit from "./event-edit";
 
-const EventItem = ({ getEventsByClockId, clockId }) => {
+const EventItem = ({
+  getEventsByClockId,
+  clockId,
+  deleteEvent,
+  updateEvent,
+}) => {
   const eventsById = getEventsByClockId(clockId);
   return (
     <>
       <Wrapper>
         {eventsById.length === 0 ? (
-          <h3>There is no Events</h3>
+          <EventTitle>There is no Events</EventTitle>
         ) : (
           eventsById.map((item) => (
-            <div key={item.id}>
-              <h3>{item.title}</h3>
-              <p>{item.des}</p>
+            <ItemDiv key={item.id}>
+              <EventTitle>{item.title}</EventTitle>
+              <P>{item.des}</P>
               <StartEvent event={item} />
-              <Button>Edit</Button>
-              <Button>Delete</Button>
-            </div>
+              <ButtonWrapper>
+                <EventEdit
+                  clockId={clockId}
+                  values={item}
+                  updateEvent={updateEvent}
+                />
+                <EventButton onClick={() => deleteEvent(item.clockId, item.id)}>
+                  Delete
+                </EventButton>
+              </ButtonWrapper>
+            </ItemDiv>
           ))
         )}
       </Wrapper>
@@ -40,4 +53,46 @@ const Wrapper = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+`;
+const EventTitle = styled.h3`
+  font-size: 26px;
+  text-transform: capitalize;
+  margin-bottom: 5px;
+`;
+const ItemDiv = styled.div`
+  background: #f7f7f7;
+  border-radius: 7px;
+  padding: 10px;
+  cursor: pointer;
+  &:hover {
+    background-color: #f1f2f6;
+  }
+`;
+const P = styled.p`
+  font-size: 15px;
+  margin-bottom: 5px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  color: #888585;
+`;
+const EventButton = styled.button`
+  color: #fff;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 400;
+  background-color: rgb(28, 34, 43);
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  &:hover {
+    background: transparent;
+    border: 2px solid black;
+    color: black;
+  }
+`;
+const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 5px;
 `;

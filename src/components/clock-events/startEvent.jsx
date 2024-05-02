@@ -1,26 +1,39 @@
 import React from "react";
 import { useEventDateTime, useEventEndTime } from "./Hook/useEvent";
-
+import styled from "styled-components";
 const StartEvent = ({ event }) => {
-  const { DID, HOURS, MINUTE, SECOND } = useEventDateTime(event);
-  const { E_DID, E_HOURS, E_MINUTE, E_SECOND } = useEventEndTime(event);
-  let stE = DID > 0 || HOURS > 0 || MINUTE > 0 || SECOND > 0;
-  let endE = E_DID > 0 || E_HOURS > 0 || E_MINUTE > 0 || E_SECOND > 0;
+  const { DID, HOURS, MINUTE, SECOND, stE } = useEventDateTime(event);
+  const { E_DID, E_HOURS, E_MINUTE, E_SECOND, endE } = useEventEndTime(event);
   return (
     <>
       {stE && (
-        <p>
-          Event will Start in {DID} : {HOURS} : {MINUTE} : {SECOND}
-        </p>
+        <Start>
+          Event will Start in {DID}d : {HOURS}h : {MINUTE}m :{" "}
+          {SECOND >= 10 ? SECOND : `0${SECOND}`}s
+        </Start>
       )}
       {!stE && endE && (
-        <p>
-          Event will End in {E_DID} : {E_HOURS} : {E_MINUTE} : {E_SECOND}
-        </p>
+        <End>
+          Event will End in {E_DID}d : {E_HOURS}h : {E_MINUTE}m :{" "}
+          {E_SECOND >= 10 ? E_SECOND : `0${E_SECOND}`}s
+        </End>
       )}
-      {!endE && <p>Event is Finished</p>}
+      {!endE && <Finish>Event is Finished</Finish>}
     </>
   );
 };
 
 export default StartEvent;
+
+const Finish = styled.p`
+  margin-bottom: 5px;
+  color: #78e08f;
+`;
+const End = styled.p`
+  margin-bottom: 5px;
+  color: #eb2f06;
+`;
+const Start = styled.p`
+  margin-bottom: 5px;
+  color: #f6b93b;
+`;

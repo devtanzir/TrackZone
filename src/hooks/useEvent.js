@@ -22,9 +22,10 @@ const useEvent = () => {
     }));
     return event;
   };
-  const deleteEvent = (id) => {
-    const updatedData = Object.keys(state).filter((item) => item.id !== id);
-    setState(updatedData);
+  const deleteEvent = (clockId, id) => {
+    const events = { ...state };
+    delete events[`${clockId}|${id}`];
+    setState(events);
   };
   const deleteEventByClockId = (clockId) => {
     const events = Object.keys(state).filter(
@@ -32,13 +33,13 @@ const useEvent = () => {
     );
     setState(events);
   };
-  const updateEvent = (updatedEvent, id) => {
-    const events = Object.keys(state).map((item) => {
-      if (item.id === id) {
-        return updatedEvent;
-      }
-      return item;
-    });
+  const updateEvent = (updatedEvent, clockId, id) => {
+    const key = `${clockId}|${id}`;
+    const events = { ...state };
+    events[key] = {
+      ...events[key],
+      ...updatedEvent,
+    };
     setState(events);
   };
 

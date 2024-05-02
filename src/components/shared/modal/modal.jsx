@@ -6,6 +6,7 @@ import EventItem from "../../clock-events/event-item";
 const Modal = ({
   isEventForm = false,
   isCreateForm = false,
+  isEdit = false,
   handleEvent,
   createEvent,
   handleModal,
@@ -18,6 +19,8 @@ const Modal = ({
   showEvent = false,
   getEventsByClockId,
   clockId,
+  deleteEvent,
+  updateEvent,
 }) => {
   const onclick = () => {
     if (handleModal) handleModal();
@@ -47,6 +50,8 @@ const Modal = ({
             <EventItem
               getEventsByClockId={getEventsByClockId}
               clockId={clockId}
+              deleteEvent={deleteEvent}
+              updateEvent={updateEvent}
             />
           )}
           {isEventForm && (
@@ -54,6 +59,10 @@ const Modal = ({
               handleEvent={handleEvent}
               handleModal={handleModal}
               createEvent={createEvent}
+              updateEvent={updateEvent}
+              clockId={clockId}
+              values={values}
+              isEdit={isEdit}
             />
           )}
           {isCreateForm && (

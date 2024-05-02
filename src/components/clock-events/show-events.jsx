@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import Button from "../ui/button/button";
 import Modal from "../shared/modal/modal";
 
-const ShowEvents = ({ getEventsByClockId, clockId }) => {
+const ShowEvents = ({
+  getEventsByClockId,
+  updateEvent,
+  clockId,
+  deleteEvent,
+}) => {
   const [show, setShow] = useState(false);
 
   const handleShow = () => {
@@ -18,6 +23,8 @@ const ShowEvents = ({ getEventsByClockId, clockId }) => {
           showEvent
           getEventsByClockId={getEventsByClockId}
           clockId={clockId}
+          deleteEvent={deleteEvent}
+          updateEvent={updateEvent}
         />
       )}
     </>

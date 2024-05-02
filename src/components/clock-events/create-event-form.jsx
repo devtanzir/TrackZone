@@ -13,8 +13,11 @@ import {
 const EventForm = ({
   values = { title: "", des: "", startDate: "", endDate: "" },
   handleEvent,
+  isEdit,
   handleModal,
   createEvent,
+  updateEvent,
+  clockId,
 }) => {
   const [events, setEvents] = useState({ ...values });
   const handleChange = (e) => {
@@ -26,7 +29,8 @@ const EventForm = ({
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleEvent(events);
+    if (!isEdit) handleEvent(events);
+    if (isEdit) updateEvent(events, clockId, events.id);
     handleModal();
   };
   return (
@@ -75,7 +79,7 @@ const EventForm = ({
           />
         </InputGroup>
       </InputWrapper>
-      <SubmitBtn type="submit">Create</SubmitBtn>
+      <SubmitBtn type="submit">{isEdit ? "Update" : "Create"}</SubmitBtn>
     </ModalForm>
   );
 };
