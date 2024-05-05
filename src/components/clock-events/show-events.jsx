@@ -7,6 +7,7 @@ const ShowEvents = ({
   updateEvent,
   clockId,
   deleteEvent,
+  deleteAllEvent,
 }) => {
   const [show, setShow] = useState(false);
 
@@ -25,6 +26,7 @@ const ShowEvents = ({
           clockId={clockId}
           deleteEvent={deleteEvent}
           updateEvent={updateEvent}
+          deleteAllEvent={deleteAllEvent}
         />
       )}
     </>

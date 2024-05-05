@@ -21,6 +21,7 @@ const Modal = ({
   clockId,
   deleteEvent,
   updateEvent,
+  deleteAllEvent,
 }) => {
   const onclick = () => {
     if (handleModal) handleModal();
@@ -52,6 +53,7 @@ const Modal = ({
               clockId={clockId}
               deleteEvent={deleteEvent}
               updateEvent={updateEvent}
+              deleteAllEvent={deleteAllEvent}
             />
           )}
           {isEventForm && (

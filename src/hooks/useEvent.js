@@ -31,7 +31,15 @@ const useEvent = () => {
     const events = Object.keys(state).filter(
       (item) => !item.startsWith(clockId)
     );
-    setState(events);
+    const filteredEvent = events.reduce((acc, cur) => {
+      acc = {
+        ...acc,
+        [cur]: state[cur],
+      };
+      return acc;
+    }, {});
+
+    setState(filteredEvent);
   };
   const updateEvent = (updatedEvent, clockId, id) => {
     const key = `${clockId}|${id}`;

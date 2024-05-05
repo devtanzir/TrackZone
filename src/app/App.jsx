@@ -15,7 +15,13 @@ const App = () => {
   const [localClock, setLocalClock] = useState({ ...LOCAL_CLOCK_INIT });
   const [clocks, setClocks] = useState([]);
 
-  const { addEvent, getEventsByClockId, updateEvent, deleteEvent } = useEvent();
+  const {
+    addEvent,
+    getEventsByClockId,
+    updateEvent,
+    deleteEvent,
+    deleteEventByClockId,
+  } = useEvent();
 
   const UpdateLocalClock = (data) => {
     setLocalClock((prev) => ({
@@ -53,6 +59,7 @@ const App = () => {
         deleteEvent={deleteEvent}
         getEventsByClockId={getEventsByClockId}
         updateEvent={updateEvent}
+        deleteAllEvent={deleteEventByClockId}
         clocks={clocks}
         updateClock={updateClock}
         deleteClock={deleteClock}

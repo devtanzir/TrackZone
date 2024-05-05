@@ -16,6 +16,7 @@ const ClockListItem = ({
   addEvent,
   deleteEvent,
   updateEvent,
+  deleteAllEvent,
 }) => {
   const { date } = useClock(clock.timezone, clock.offset);
 
@@ -45,6 +46,7 @@ const ClockListItem = ({
             clockId={clock.id}
             deleteEvent={deleteEvent}
             updateEvent={updateEvent}
+            deleteAllEvent={deleteAllEvent}
           />
         </ThreeBtn>
       </ClockItemWrapper>
