@@ -5,7 +5,12 @@ import ClockDisplay from "../shared/clock-display";
 import useTimer from "../../hooks/useTimer";
 import CreateEvent from "../clock-events";
 import ShowEvents from "../clock-events/show-events";
-import styled from "styled-components";
+import {
+  ClockItemWrapper,
+  ThreeBtn,
+  TimeMng,
+  Wrapper,
+} from "./clock-list-style";
 
 const ClockListItem = ({
   clock,
@@ -55,28 +60,3 @@ const ClockListItem = ({
 };
 
 export default ClockListItem;
-
-const Wrapper = styled.div`
-  display: inline-block;
-  width: 405.6px;
-  padding: 15px;
-  border-radius: 7px;
-  box-shadow: 20px 20px 20px -10px rgba(0, 0, 0, 0.15),
-    inset 15px 15px 10px rgba(255, 255, 255, 0.5),
-    -15px -15px 35px rgba(255, 255, 255, 0.35),
-    inset -1px -1px 10px rgba(0, 0, 0, 0.2);
-`;
-const ClockItemWrapper = styled.div`
-  padding: 15px;
-  padding-top: 0;
-`;
-const ThreeBtn = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-const TimeMng = styled.h3`
-  text-align: center;
-  text-transform: capitalize;
-  font-size: 20px;
-`;

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "../ui/button/button";
 import Modal from "../shared/modal/modal";
+import useEventEdit from "./Hook/useEventEdit";
 
 const ShowEvents = ({
   getEventsByClockId,
@@ -9,18 +10,14 @@ const ShowEvents = ({
   deleteEvent,
   deleteAllEvent,
 }) => {
-  const [show, setShow] = useState(false);
-
-  const handleShow = () => {
-    setShow(!show);
-  };
+  const { state, handleState } = useEventEdit();
 
   return (
     <>
-      <Button onClick={() => setShow(!show)}>Show Event</Button>
-      {show && (
+      <Button onClick={handleState}>Show Event</Button>
+      {state && (
         <Modal
-          handleShow={handleShow}
+          handleShow={handleState}
           showEvent
           getEventsByClockId={getEventsByClockId}
           clockId={clockId}

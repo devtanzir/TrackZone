@@ -1,7 +1,7 @@
-import React, { useState } from "react";
 import Button from "../../ui/button/button";
-import styled from "styled-components";
 import Modal from "../modal/modal";
+import useAction from "./hook/useAction";
+import { ButtonWrapper } from "./action-style";
 const ClockActions = ({
   local = false,
   clock,
@@ -9,24 +9,13 @@ const ClockActions = ({
   createClock,
   deleteClock,
 }) => {
-  const [isEdit, setIsEdit] = useState(false);
-  const [isCreate, setIsCreate] = useState(false);
-
-  const handleModal = () => {
-    setIsCreate(!isCreate);
-  };
-  const handleEditModal = () => {
-    setIsEdit(!isEdit);
-  };
-
-  const handleClock = (values) => {
-    createClock(values);
-  };
+  const { isEdit, isCreate, handleModal, handleEditModal, handleClock } =
+    useAction(createClock);
   return (
     <ButtonWrapper>
-      <Button onClick={() => setIsEdit(!isEdit)}>Edit</Button>
+      <Button onClick={handleEditModal}>Edit</Button>
       {local ? (
-        <Button onClick={() => setIsCreate((prev) => !prev)}>Create</Button>
+        <Button onClick={handleModal}>Create</Button>
       ) : (
         <Button onClick={() => deleteClock(clock.id)}>Delete</Button>
       )}
@@ -55,10 +44,3 @@ const ClockActions = ({
 };
 
 export default ClockActions;
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  gap: 3px;
-  justify-content: space-between;
-  margin: 10px 0;
-`;

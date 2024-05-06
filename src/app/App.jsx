@@ -1,51 +1,23 @@
-import React, { useState } from "react";
 import LocalClock from "../components/local-clock";
 import ClockList from "../components/clock-list";
-import { generateId } from "../utils/Id_Generator/GenerateId";
 import styled from "styled-components";
-import useEvent from "../hooks/useEvent";
-const LOCAL_CLOCK_INIT = {
-  title: "My Clock",
-  timezone: "",
-  offset: 0,
-  date: null,
-};
+import useApp from "./hook/useApp";
+import { MainWrapper } from "./app-style";
 
 const App = () => {
-  const [localClock, setLocalClock] = useState({ ...LOCAL_CLOCK_INIT });
-  const [clocks, setClocks] = useState([]);
-
   const {
+    localClock,
+    clocks,
     addEvent,
     getEventsByClockId,
     updateEvent,
     deleteEvent,
     deleteEventByClockId,
-  } = useEvent();
-
-  const UpdateLocalClock = (data) => {
-    setLocalClock((prev) => ({
-      ...prev,
-      ...data,
-    }));
-  };
-  const createClock = (clock) => {
-    clock.id = generateId();
-    setClocks((prev) => [clock, ...prev]);
-  };
-  const updateClock = (updateData) => {
-    const updatedData = clocks.map((clock) => {
-      if (clock.id === updateData.id) {
-        return updateData;
-      }
-      return clock;
-    });
-    setClocks(updatedData);
-  };
-  const deleteClock = (id) => {
-    const updatedData = clocks.filter((clock) => clock.id !== id);
-    setClocks(updatedData);
-  };
+    UpdateLocalClock,
+    createClock,
+    updateClock,
+    deleteClock,
+  } = useApp();
   return (
     <MainWrapper>
       <LocalClock
@@ -69,8 +41,3 @@ const App = () => {
 };
 
 export default App;
-
-const MainWrapper = styled.div`
-  width: 90%;
-  margin: 0 auto;
-`;

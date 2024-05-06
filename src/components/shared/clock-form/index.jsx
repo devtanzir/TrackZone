@@ -13,6 +13,7 @@ import {
   Select,
   SubmitBtn,
 } from "../../ui/button/AllFormItem";
+import useClockForm from "./hook/useClockForm";
 
 const ClockForm = ({
   values = { title: "", timezone: "UTC", offset: 0 },
@@ -22,30 +23,35 @@ const ClockForm = ({
   handleModal,
   createForm = false,
 }) => {
-  const [formValues, setFormValues] = useState({ ...values });
-  useEffect(() => {
-    if (TIMEZONE_OFFSET[formValues.timezone]) {
-      setFormValues((prev) => ({
-        ...prev,
-        offset: TIMEZONE_OFFSET[formValues.timezone],
-      }));
-    }
-  }, [formValues.timezone]);
-  const handleChange = (e) => {
-    let { name, value } = e.target;
-    if (name === "offset") {
-      value = +value * 60;
-    }
-    setFormValues((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleClock(formValues);
-    handleModal();
-  };
+  const { formValues, handleChange, handleSubmit } = useClockForm(
+    values,
+    handleClock,
+    handleModal
+  );
+  // const [formValues, setFormValues] = useState({ ...values });
+  // useEffect(() => {
+  //   if (TIMEZONE_OFFSET[formValues.timezone]) {
+  //     setFormValues((prev) => ({
+  //       ...prev,
+  //       offset: TIMEZONE_OFFSET[formValues.timezone],
+  //     }));
+  //   }
+  // }, [formValues.timezone]);
+  // const handleChange = (e) => {
+  //   let { name, value } = e.target;
+  //   if (name === "offset") {
+  //     value = +value * 60;
+  //   }
+  //   setFormValues((prev) => ({
+  //     ...prev,
+  //     [name]: value,
+  //   }));
+  // };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   handleClock(formValues);
+  //   handleModal();
+  // };
   return (
     <ModalForm onSubmit={handleSubmit}>
       <ModalFormTitle>
