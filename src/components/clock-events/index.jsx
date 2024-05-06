@@ -1,19 +1,15 @@
-import React, { useState } from "react";
 import Button from "../ui/button/button";
 import Modal from "../shared/modal/modal";
+import useCreateEvent from "./Hook/useCreateEvent";
 
 const CreateEvent = ({ addClock, clockId }) => {
-  const [isCreate, setIsCreate] = useState(false);
-  const handleEvent = (events) => {
-    events.clockId = clockId;
-    addClock(events);
-  };
-  const handleModal = () => {
-    setIsCreate(!isCreate);
-  };
+  const { handleEvent, handleModal, isCreate } = useCreateEvent(
+    addClock,
+    clockId
+  );
   return (
     <div>
-      <Button onClick={() => setIsCreate(!isCreate)}>Create Event</Button>
+      <Button onClick={handleModal}>Create Event</Button>
       {isCreate && (
         <Modal
           isEventForm

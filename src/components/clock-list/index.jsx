@@ -1,6 +1,7 @@
 import React from "react";
 import ClockListItem from "./clock-list-item";
 import styled from "styled-components";
+import { ClockListWrapper, H4 } from "./clock-list-style";
 const ClockList = ({
   clocks,
   updateClock,
@@ -13,7 +14,7 @@ const ClockList = ({
   deleteAllEvent,
 }) => {
   return (
-    <Wrapper>
+    <ClockListWrapper>
       {clocks.length === 0 ? (
         <H4>There is no clock. Please enter one</H4>
       ) : (
@@ -32,19 +33,8 @@ const ClockList = ({
           />
         ))
       )}
-    </Wrapper>
+    </ClockListWrapper>
   );
 };
 
 export default ClockList;
-
-const Wrapper = styled.div`
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-`;
-const H4 = styled.h4`
-  font-size: 25px;
-  text-transform: uppercase;
-  text-align: center;
-`;
