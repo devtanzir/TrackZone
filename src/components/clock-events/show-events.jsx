@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import Button from "../ui/button/button";
 import Modal from "../shared/modal/modal";
 import useEventEdit from "./Hook/useEventEdit";

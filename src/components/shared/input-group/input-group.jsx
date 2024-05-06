@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Error,
   Input,
@@ -6,6 +5,7 @@ import {
   Label,
   Option,
   Select,
+  TextArea,
 } from "../../ui/button/AllFormItem";
 import { generateId } from "../../../utils/Id_Generator/GenerateId";
 
@@ -17,6 +17,7 @@ const InputGroupContainer = ({
   onChange,
   disabled,
   isSelect = false,
+  isTextarea = false,
   placeholder,
   onFocus,
   onBlur,
@@ -31,7 +32,21 @@ const InputGroupContainer = ({
       ) : (
         <Label htmlFor={name}>{label}</Label>
       )}
-      {isSelect ? (
+
+      {isTextarea && (
+        <TextArea
+          name={name}
+          id={name}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          onInput={onInput}
+          error={error}
+        />
+      )}
+      {isSelect && (
         <Select onChange={onChange} name={name} id={name} value={value}>
           {optionValue().map((timezone) => {
             return (
@@ -41,7 +56,8 @@ const InputGroupContainer = ({
             );
           })}
         </Select>
-      ) : (
+      )}
+      {!isSelect && !isTextarea && (
         <Input
           type={type}
           name={name}

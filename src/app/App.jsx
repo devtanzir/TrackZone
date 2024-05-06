@@ -1,6 +1,5 @@
 import LocalClock from "../components/local-clock";
 import ClockList from "../components/clock-list";
-import styled from "styled-components";
 import useApp from "./hook/useApp";
 import { MainWrapper } from "./app-style";
 

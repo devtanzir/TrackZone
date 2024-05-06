@@ -15,7 +15,6 @@ import { TIMEZONE_OFFSET } from "../constants/timezone";
  */
 const useForm = ({ init, validate }) => {
   const [state, setState] = useState(mapValuesToState(init));
-  // console.log(state);
 
   const handleBlur = (e) => {
     const { errors } = getErrors(state);

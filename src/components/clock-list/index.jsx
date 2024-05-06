@@ -1,6 +1,5 @@
 import React from "react";
 import ClockListItem from "./clock-list-item";
-import styled from "styled-components";
 import { ClockListWrapper, H4 } from "./clock-list-style";
 const ClockList = ({
   clocks,

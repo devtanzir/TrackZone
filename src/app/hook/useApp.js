@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import useEvent from "../../hooks/useEvent";
 import { generateId } from "../../utils/Id_Generator/GenerateId";
 

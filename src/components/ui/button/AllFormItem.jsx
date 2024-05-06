@@ -6,10 +6,14 @@ export const Input = styled.input`
   border-radius: 0.5rem;
   outline: none;
   font-size: 18px;
+  border: ${({ error }) => (error ? "2px solid #ff0000" : "2px solid #000")};
   width: 100%;
   background-color: #ffffff;
   filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04))
     drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
+  &:focus {
+    border: 2px solid #535c68;
+  }
 `;
 export const TextArea = styled.textarea`
   height: 90px;
@@ -88,4 +92,9 @@ export const Select = styled.select`
 `;
 export const Option = styled.option`
   background-color: #dfe4ea;
+`;
+export const Error = styled.div`
+  font-size: 1rem;
+  color: red;
+  margin-top: 7px;
 `;

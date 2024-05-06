@@ -1,13 +1,9 @@
-import React, { useState } from "react";
+import InputGroupContainer from "../shared/input-group/input-group";
 import {
-  Input,
-  InputGroup,
   InputWrapper,
-  Label,
   ModalForm,
   ModalFormTitle,
   SubmitBtn,
-  TextArea,
 } from "../ui/button/AllFormItem";
 import useEventForm from "./Hook/useEventForm";
 
@@ -34,45 +30,38 @@ const EventForm = ({
         {createEvent ? "Create Event" : "Edit Event"}
       </ModalFormTitle>
       <InputWrapper>
-        <InputGroup>
-          <Label htmlFor="title">Enter Title</Label>
-          <Input
-            type="text"
-            name="title"
-            id="title"
-            value={events.title}
-            onChange={handleChange}
-          />
-        </InputGroup>
-        <InputGroup>
-          <Label htmlFor="des">Event Details</Label>
-          <TextArea
-            name="des"
-            id="des"
-            value={events.des}
-            onChange={handleChange}
-          ></TextArea>
-        </InputGroup>
-        <InputGroup>
-          <Label htmlFor="startDate">Enter Start date</Label>
-          <Input
-            type="datetime-local"
-            name="startDate"
-            id="startDate"
-            value={events.startDate}
-            onChange={handleChange}
-          />
-        </InputGroup>
-        <InputGroup>
-          <Label htmlFor="endDate">Enter End date</Label>
-          <Input
-            type="datetime-local"
-            name="endDate"
-            id="endDate"
-            value={events.endDate}
-            onChange={handleChange}
-          />
-        </InputGroup>
+        <InputGroupContainer
+          label={"Enter Title"}
+          name={"title"}
+          type={"text"}
+          value={events.title}
+          onChange={handleChange}
+          placeholder={"Meeting With John"}
+        />
+        <InputGroupContainer
+          isTextarea
+          label={"Event Details"}
+          name={"des"}
+          value={events.des}
+          onChange={handleChange}
+          placeholder={
+            "John is my American Client. He needs a Web Application that will related to timezone"
+          }
+        />
+        <InputGroupContainer
+          label={"Event Start date"}
+          name={"startDate"}
+          type={"datetime-local"}
+          value={events.startDate}
+          onChange={handleChange}
+        />
+        <InputGroupContainer
+          label={"Event End date"}
+          name={"endDate"}
+          type={"datetime-local"}
+          value={events.endDate}
+          onChange={handleChange}
+        />
       </InputWrapper>
       <SubmitBtn type="submit">{isEdit ? "Update" : "Create"}</SubmitBtn>
     </ModalForm>
