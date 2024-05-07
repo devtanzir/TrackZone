@@ -41,15 +41,10 @@ const useForm = ({ init, validate }) => {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     const oldState = deepClone(state);
-
     if (type === "checkbox") {
       oldState[name].value = checked;
     } else {
-      if (oldState[name] === "offset") {
-        oldState[name].value = +value * 60;
-      } else {
-        oldState[name].value = value;
-      }
+      oldState[name].value = value;
     }
     const { errors } = getErrors(oldState);
 
@@ -71,20 +66,6 @@ const useForm = ({ init, validate }) => {
       touched: mapStateToKeys(state, "touched"),
       focused: mapStateToKeys(state, "focused"),
     });
-  };
-  const handleTimeZone = () => {
-    if (TIMEZONE_OFFSET[state.timezone.value]) {
-      console.log("before state", state);
-      setState((prev) => ({
-        ...prev,
-
-        offset: {
-          ...prev,
-          value: TIMEZONE_OFFSET[state.timezone.value],
-        },
-      }));
-      console.log("after state", state);
-    }
   };
 
   const setErrorOnSubmit = (errors) => {
@@ -132,7 +113,6 @@ const useForm = ({ init, validate }) => {
     handleSubmit,
     resetForm,
     setErrorOnSubmit,
-    handleTimeZone,
   };
 };
 

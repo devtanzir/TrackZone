@@ -1,4 +1,4 @@
-import { useState } from "react";
+import useForm from "../../../hooks/useForm";
 
 const useEventForm = (
   values,
@@ -8,24 +8,53 @@ const useEventForm = (
   updateEvent,
   clockId
 ) => {
-  const [events, setEvents] = useState({ ...values });
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setEvents((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  const init = { ...values };
+  const validate = (values) => {
+    const errors = {};
+    if (!values.title) {
+      errors.title = "Title is Required";
+    }
+    if (!values.des) {
+      errors.des = "Description is Required";
+    }
+    if (!values.startDate) {
+      errors.startDate = "Invalid Date";
+    } else if (new Date(values.startDate) <= new Date()) {
+      errors.startDate = "Invalid Date";
+    }
+    if (!values.endDate) {
+      errors.endDate = "Invalid Date";
+    } else if (new Date(values.endDate) <= new Date(values.startDate)) {
+      errors.endDate = "Invalid Date";
+    }
+    return errors;
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!isEdit) handleEvent(events);
-    if (isEdit) updateEvent(events, clockId, events.id);
-    handleModal();
+  const {
+    formState: state,
+    handleBlur,
+    handleChange,
+    handleFocus,
+    handleSubmit,
+    setErrorOnSubmit,
+  } = useForm({ init, validate });
+
+  const cb = ({ hasError, values, errors }) => {
+    if (hasError) {
+      setErrorOnSubmit(errors);
+    } else {
+      if (!isEdit) handleEvent(values);
+      if (isEdit) updateEvent(values, clockId, values.id);
+      handleModal();
+    }
   };
   return {
-    events,
+    formState: state,
+    handleBlur,
     handleChange,
+    handleFocus,
     handleSubmit,
+    setErrorOnSubmit,
+    cb,
   };
 };
 

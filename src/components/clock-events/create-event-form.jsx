@@ -16,7 +16,15 @@ const EventForm = ({
   updateEvent,
   clockId,
 }) => {
-  const { events, handleChange, handleSubmit } = useEventForm(
+  const {
+    formState: state,
+    handleBlur,
+    handleChange,
+    handleFocus,
+    handleSubmit,
+    setErrorOnSubmit,
+    cb,
+  } = useEventForm(
     values,
     handleEvent,
     isEdit,
@@ -25,7 +33,7 @@ const EventForm = ({
     clockId
   );
   return (
-    <ModalForm onSubmit={handleSubmit}>
+    <ModalForm onSubmit={(e) => handleSubmit(e, cb)}>
       <ModalFormTitle>
         {createEvent ? "Create Event" : "Edit Event"}
       </ModalFormTitle>
@@ -34,33 +42,45 @@ const EventForm = ({
           label={"Enter Title"}
           name={"title"}
           type={"text"}
-          value={events.title}
+          value={state.title.value}
           onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           placeholder={"Meeting With John"}
+          error={state.title.error}
         />
         <InputGroupContainer
           isTextarea
           label={"Event Details"}
           name={"des"}
-          value={events.des}
+          value={state.des.value}
           onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           placeholder={
             "John is my American Client. He needs a Web Application that will related to timezone"
           }
+          error={state.des.error}
         />
         <InputGroupContainer
           label={"Event Start date"}
           name={"startDate"}
           type={"datetime-local"}
-          value={events.startDate}
+          value={state.startDate.value}
           onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          error={state.startDate.error}
         />
         <InputGroupContainer
           label={"Event End date"}
           name={"endDate"}
           type={"datetime-local"}
-          value={events.endDate}
+          value={state.endDate.value}
           onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          error={state.endDate.error}
         />
       </InputWrapper>
       <SubmitBtn type="submit">{isEdit ? "Update" : "Create"}</SubmitBtn>
