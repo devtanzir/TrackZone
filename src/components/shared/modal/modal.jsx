@@ -29,7 +29,7 @@ const Modal = ({
   };
   return (
     <>
-      <ModalBody onClick={() => onclick()}>
+      <ModalBody>
         <ModalInner onClick={(e_) => e_.stopPropagation()}>
           <ModalSvg
             onClick={() => onclick()}

@@ -2,6 +2,8 @@ import Button from "../../ui/button/button";
 import Modal from "../modal/modal";
 import useAction from "./hook/useAction";
 import { ButtonWrapper } from "./action-style";
+import useEventEdit from "../../clock-events/Hook/useEventEdit";
+import Confirm from "../confirm-modal/confirm-modal";
 const ClockActions = ({
   local = false,
   clock,
@@ -11,13 +13,23 @@ const ClockActions = ({
 }) => {
   const { isEdit, isCreate, handleModal, handleEditModal, handleClock } =
     useAction(createClock);
+  const { handleState, state } = useEventEdit();
   return (
     <ButtonWrapper>
       <Button onClick={handleEditModal}>Edit</Button>
       {local ? (
         <Button onClick={handleModal}>Create</Button>
       ) : (
-        <Button onClick={() => deleteClock(clock.id)}>Delete</Button>
+        <>
+          <Button onClick={handleState}>Delete</Button>
+          {state && (
+            <Confirm
+              handleState={handleState}
+              deleteClock={deleteClock}
+              clockId={clock.id}
+            />
+          )}
+        </>
       )}
       {isEdit && (
         <>

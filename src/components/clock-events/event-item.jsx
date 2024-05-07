@@ -8,6 +8,9 @@ import {
   P,
   Wrapper,
 } from "./event-style";
+import useEventEdit from "./Hook/useEventEdit";
+import Confirm from "../shared/confirm-modal/confirm-modal";
+import EventDelete from "./event-delete";
 
 const EventItem = ({
   getEventsByClockId,
@@ -17,6 +20,7 @@ const EventItem = ({
   deleteAllEvent,
 }) => {
   const eventsById = getEventsByClockId(clockId);
+  const { handleState, state } = useEventEdit();
   return (
     <>
       <Wrapper>
@@ -35,17 +39,22 @@ const EventItem = ({
                     values={item}
                     updateEvent={updateEvent}
                   />
-                  <EventButton
-                    onClick={() => deleteEvent(item.clockId, item.id)}
-                  >
-                    Delete
-                  </EventButton>
+                  <EventDelete
+                    deleteEvent={deleteEvent}
+                    clockId={item.clockId}
+                    id={item.id}
+                  />
                 </ButtonWrapper>
               </ItemDiv>
             ))}
-            <EventButton onClick={() => deleteAllEvent(clockId)}>
-              Delete All
-            </EventButton>
+            <EventButton onClick={handleState}>Delete All</EventButton>
+            {state && (
+              <Confirm
+                deleteClock={deleteAllEvent}
+                clockId={clockId}
+                handleState={handleState}
+              />
+            )}
           </>
         )}
       </Wrapper>
