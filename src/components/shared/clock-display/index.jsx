@@ -1,24 +1,20 @@
 import { format } from "date-fns";
-import {
-  DateFormate,
-  DateTimezone,
-  Title,
-  Wrapper,
-} from "./clock-display-style";
+import { TextH3, TextH5, TextP } from "../../ui/text";
+import { Wrapper } from "./clock-display-style";
 
 const ClockDisplay = ({ date, title, timezone, offset }) => {
   const offsetHr = offset / 60;
   return (
     <Wrapper>
-      <Title>{title}</Title>
-      <DateFormate>{format(date, "hh:mm:ss aaaaa'm'")}</DateFormate>
-      <DateTimezone>
+      <TextH3>{title}</TextH3>
+      <TextH5>{format(date, "hh:mm:ss aaaaa'm'")}</TextH5>
+      <TextP>
         {timezone}
         {(timezone === "GMT" || timezone === "UTC") &&
           (offsetHr > 0
             ? ` | +${Math.abs(offsetHr)}`
             : ` | -${Math.abs(offsetHr)}`)}
-      </DateTimezone>
+      </TextP>
     </Wrapper>
   );
 };

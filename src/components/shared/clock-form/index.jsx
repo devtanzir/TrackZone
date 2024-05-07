@@ -4,7 +4,7 @@ import {
   ModalForm,
   ModalFormTitle,
   SubmitBtn,
-} from "../../ui/button/AllFormItem";
+} from "../../ui/AllFormItem";
 import useClockForm from "./hook/useClockForm";
 import InputGroupContainer from "../input-group/input-group";
 

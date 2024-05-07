@@ -4,7 +4,7 @@ import {
   ModalForm,
   ModalFormTitle,
   SubmitBtn,
-} from "../ui/button/AllFormItem";
+} from "../ui/AllFormItem";
 import useEventForm from "./Hook/useEventForm";
 
 const EventForm = ({
