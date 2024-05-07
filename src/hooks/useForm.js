@@ -5,7 +5,6 @@ import {
   mapStateToKeys,
   isObjectEmpty,
 } from "../utils/object-utils";
-import { TIMEZONE_OFFSET } from "../constants/timezone";
 
 /**
  *
@@ -43,6 +42,8 @@ const useForm = ({ init, validate }) => {
     const oldState = deepClone(state);
     if (type === "checkbox") {
       oldState[name].value = checked;
+    } else if (name === "offset") {
+      oldState[name].value = +value * 60;
     } else {
       oldState[name].value = value;
     }

@@ -1,35 +1,39 @@
-import { useEffect, useState } from "react";
-import { TIMEZONE_OFFSET } from "../../../../constants/timezone";
+import useForm from "../../../../hooks/useForm";
 
 const useClockForm = (values, handleClock, handleModal) => {
-  const [formValues, setFormValues] = useState({ ...values });
-  useEffect(() => {
-    if (TIMEZONE_OFFSET[formValues.timezone]) {
-      setFormValues((prev) => ({
-        ...prev,
-        offset: TIMEZONE_OFFSET[formValues.timezone],
-      }));
+  const init = { ...values };
+  const validate = (values) => {
+    const errors = {};
+    if (!values.title) {
+      errors.title = "Title is Required";
     }
-  }, [formValues.timezone]);
-  const handleChange = (e) => {
-    let { name, value } = e.target;
-    if (name === "offset") {
-      value = +value * 60;
-    }
-    setFormValues((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    return errors;
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleClock(formValues);
-    handleModal();
+
+  const {
+    formState: state,
+    handleBlur,
+    handleChange,
+    handleFocus,
+    handleSubmit,
+    setErrorOnSubmit,
+  } = useForm({ init, validate });
+
+  const cb = ({ hasError, values, errors }) => {
+    if (hasError) {
+      setErrorOnSubmit(errors);
+    } else {
+      handleClock(values);
+      handleModal();
+    }
   };
   return {
-    formValues,
+    formState: state,
+    handleBlur,
     handleChange,
+    handleFocus,
     handleSubmit,
+    cb,
   };
 };
 

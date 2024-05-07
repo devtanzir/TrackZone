@@ -53,7 +53,6 @@ const useEventForm = (
     handleChange,
     handleFocus,
     handleSubmit,
-    setErrorOnSubmit,
     cb,
   };
 };

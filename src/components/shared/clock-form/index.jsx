@@ -16,13 +16,16 @@ const ClockForm = ({
   handleModal,
   createForm = false,
 }) => {
-  const { formValues, handleChange, handleSubmit } = useClockForm(
-    values,
-    handleClock,
-    handleModal
-  );
+  const {
+    formState: state,
+    handleBlur,
+    handleChange,
+    handleFocus,
+    handleSubmit,
+    cb,
+  } = useClockForm(values, handleClock, handleModal);
   return (
-    <ModalForm onSubmit={handleSubmit}>
+    <ModalForm onSubmit={(e) => handleSubmit(e, cb)}>
       <ModalFormTitle>
         {createForm ? "Create a New Clock" : "Edit Clock"}
       </ModalFormTitle>
@@ -31,25 +34,28 @@ const ClockForm = ({
           label={"Enter Title"}
           name={"title"}
           type={"text"}
-          value={formValues.title}
+          value={state.title.value}
           onChange={handleChange}
           disabled={!title}
           placeholder={"Universal Clock"}
+          onBlur={handleBlur}
+          onFocus={handleFocus}
+          error={state.title.error}
         />
         <InputGroupContainer
           isSelect
           label={"Enter Timezone : "}
           name={"timezone"}
-          value={formValues.timezone}
+          value={state.timezone.value}
           onChange={handleChange}
           optionValue={getTimeZone}
         />
-        {(formValues.timezone === "GMT" || formValues.timezone === "UTC") && (
+        {(state.timezone.value === "GMT" || state.timezone.value === "UTC") && (
           <InputGroupContainer
             isSelect
             label={"Enter Offset : "}
             name={"offset"}
-            value={formValues.offset / 60}
+            value={state.offset.value / 60}
             onChange={handleChange}
             optionValue={getOffset}
           />

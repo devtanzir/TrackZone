@@ -22,7 +22,6 @@ const EventForm = ({
     handleChange,
     handleFocus,
     handleSubmit,
-    setErrorOnSubmit,
     cb,
   } = useEventForm(
     values,
