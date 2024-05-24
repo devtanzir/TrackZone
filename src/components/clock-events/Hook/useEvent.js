@@ -4,6 +4,11 @@ import {
   differenceInMinutes,
   differenceInSeconds,
 } from "date-fns";
+/**
+ * calculate the difference between event start date and current date
+ * @param {Object} event
+ * @returns event start remain time
+ */
 export const useEventDateTime = (event) => {
   const DID = differenceInDays(event.startDate, new Date());
   const DIH = differenceInHours(event.startDate, new Date());
@@ -21,6 +26,11 @@ export const useEventDateTime = (event) => {
     stE,
   };
 };
+/**
+ * calculate the difference between event end date and current date
+ * @param {Object} event
+ * @returns event end remain time
+ */
 export const useEventEndTime = (event) => {
   const DID = differenceInDays(event.endDate, new Date());
   const DIH = differenceInHours(event.endDate, new Date());

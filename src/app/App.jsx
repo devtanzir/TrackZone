@@ -20,20 +20,20 @@ const App = () => {
   return (
     <MainWrapper>
       <LocalClock
-        clock={localClock}
-        UpdateLocalClock={UpdateLocalClock}
-        createClock={createClock}
+        clock={localClock} // pass the clock object from state
+        UpdateLocalClock={UpdateLocalClock} // pass the function to upgrade the local clock
+        createClock={createClock} // pass the function to Create multiple clocks
       />
       <ClockList
-        localClock={localClock.date}
-        addEvent={addEvent}
-        deleteEvent={deleteEvent}
-        getEventsByClockId={getEventsByClockId}
-        updateEvent={updateEvent}
-        deleteAllEvent={deleteEventByClockId}
-        clocks={clocks}
-        updateClock={updateClock}
-        deleteClock={deleteClock}
+        localClock={localClock.date} // pass the time to calculate the difference between two clocks
+        addEvent={addEvent} // to add the event on parent clock
+        deleteEvent={deleteEvent} // to delete event from state
+        getEventsByClockId={getEventsByClockId} // to get the event with their parent clock
+        updateEvent={updateEvent} // event updater function
+        deleteAllEvent={deleteEventByClockId} // delete all event with 1 button from targeted clock
+        clocks={clocks} // pass all the clocks
+        updateClock={updateClock} // update clocks
+        deleteClock={deleteClock} // delete clocks
       />
     </MainWrapper>
   );

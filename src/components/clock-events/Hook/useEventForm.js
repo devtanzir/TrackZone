@@ -1,5 +1,14 @@
 import useForm from "../../../hooks/useForm";
-
+/**
+ * custom hook to handle event
+ * @param {Object} values
+ * @param {Function} handleEvent
+ * @param {Boolean} isEdit
+ * @param {Function} handleModal
+ * @param {Function} updateEvent
+ * @param {String} clockId
+ * @returns
+ */
 const useEventForm = (
   values,
   handleEvent,
@@ -9,6 +18,11 @@ const useEventForm = (
   clockId
 ) => {
   const init = { ...values };
+  /**
+   * set custom error validator on form
+   * @param {Object} values
+   * @returns custom error
+   */
   const validate = (values) => {
     const errors = {};
     if (!values.title) {
@@ -29,6 +43,9 @@ const useEventForm = (
     }
     return errors;
   };
+  /**
+   * use the form validator hook
+   */
   const {
     formState: state,
     handleBlur,
@@ -37,13 +54,16 @@ const useEventForm = (
     handleSubmit,
     setErrorOnSubmit,
   } = useForm({ init, validate });
-
+  /**
+   * what to do when submit function
+   * @param {*} param0
+   */
   const cb = ({ hasError, values, errors }) => {
     if (hasError) {
-      setErrorOnSubmit(errors);
+      setErrorOnSubmit(errors); // if form has error
     } else {
-      if (!isEdit) handleEvent(values);
-      if (isEdit) updateEvent(values, clockId, values.id);
+      if (!isEdit) handleEvent(values); // if create form
+      if (isEdit) updateEvent(values, clockId, values.id); // if edit form
       handleModal();
     }
   };
