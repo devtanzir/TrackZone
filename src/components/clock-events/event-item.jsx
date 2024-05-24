@@ -11,6 +11,7 @@ import {
 import useEventEdit from "./Hook/useEventEdit";
 import Confirm from "../shared/confirm-modal/confirm-modal";
 import EventDelete from "./event-delete";
+import PropTypes from "prop-types";
 
 const EventItem = ({
   getEventsByClockId,
@@ -61,5 +62,11 @@ const EventItem = ({
     </>
   );
 };
-
+EventItem.propTypes = {
+  getEventsByClockId: PropTypes.func.isRequired,
+  deleteEvent: PropTypes.func.isRequired,
+  updateEvent: PropTypes.func.isRequired,
+  deleteAllEvent: PropTypes.func.isRequired,
+  clockId: PropTypes.string.isRequired,
+};
 export default EventItem;

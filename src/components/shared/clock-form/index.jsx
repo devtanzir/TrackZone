@@ -7,6 +7,7 @@ import {
 } from "../../ui/AllFormItem";
 import useClockForm from "./hook/useClockForm";
 import InputGroupContainer from "../input-group/input-group";
+import PropTypes from "prop-types";
 
 const ClockForm = ({
   values = { title: "", timezone: "UTC", offset: 0 },
@@ -65,5 +66,16 @@ const ClockForm = ({
     </ModalForm>
   );
 };
-
+ClockForm.propTypes = {
+  values: PropTypes.shape({
+    title: PropTypes.string,
+    timezone: PropTypes.string,
+    offset: PropTypes.number,
+  }),
+  handleClock: PropTypes.func,
+  handleModal: PropTypes.func,
+  title: PropTypes.bool,
+  edit: PropTypes.bool,
+  createForm: PropTypes.bool,
+};
 export default ClockForm;

@@ -6,8 +6,8 @@ export const Input = styled.input`
   border-radius: 0.5rem;
   outline: none;
   font-size: 18px;
-  border: ${({ error }) => (error ? "2px solid #ff0000" : "2px solid #000")};
-  margin-bottom: ${({ error }) => (error ? "" : "27px")};
+  border: ${(props) => (props.$error ? "2px solid #ff0000" : "2px solid #000")};
+  margin-bottom: ${(props) => (props.$error ? "" : "27px")};
   width: 100%;
   background-color: #ffffff;
   filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04))
@@ -21,8 +21,8 @@ export const TextArea = styled.textarea`
   padding: 0.75rem;
   border-radius: 0.5rem;
   resize: none;
-  border: ${({ error }) => (error ? "2px solid #ff0000" : "2px solid #000")};
-  margin-bottom: ${({ error }) => (error ? "" : "27px")};
+  border: ${(props) => (props.$error ? "2px solid #ff0000" : "2px solid #000")};
+  margin-bottom: ${(props) => (props.$error ? "" : "27px")};
   outline: none;
   font-size: 18px;
   width: 100%;

@@ -9,6 +9,7 @@ import {
   TrueBtn,
   Wrapper,
 } from "./confirm-style";
+import PropTypes from "prop-types";
 
 const Confirm = ({ handleState, deleteClock, clockId, deleteEvent, id }) => {
   const deleteData = () => {
@@ -66,4 +67,11 @@ const Confirm = ({ handleState, deleteClock, clockId, deleteEvent, id }) => {
   );
 };
 
+Confirm.propTypes = {
+  handleState: PropTypes.func,
+  deleteClock: PropTypes.func,
+  deleteEvent: PropTypes.func,
+  clockId: PropTypes.string.isRequired,
+  id: PropTypes.string,
+};
 export default Confirm;

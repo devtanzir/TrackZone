@@ -4,6 +4,8 @@ import useAction from "./hook/useAction";
 import { ButtonWrapper } from "./action-style";
 import useEventEdit from "../../clock-events/Hook/useEventEdit";
 import Confirm from "../confirm-modal/confirm-modal";
+import PropTypes from "prop-types";
+
 const ClockActions = ({
   local = false,
   clock,
@@ -53,6 +55,18 @@ const ClockActions = ({
       )}
     </ButtonWrapper>
   );
+};
+
+ClockActions.propTypes = {
+  local: PropTypes.bool,
+  clock: PropTypes.shape({
+    offset: PropTypes.number.isRequired,
+    timezone: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }),
+  updateClock: PropTypes.func,
+  createClock: PropTypes.func,
+  deleteClock: PropTypes.func,
 };
 
 export default ClockActions;

@@ -1,6 +1,7 @@
 import Button from "../ui/button/button";
 import Modal from "../shared/modal/modal";
 import useEventEdit from "./Hook/useEventEdit";
+import PropTypes from "prop-types";
 
 const ShowEvents = ({
   getEventsByClockId,
@@ -29,4 +30,11 @@ const ShowEvents = ({
   );
 };
 
+ShowEvents.propTypes = {
+  id: PropTypes.string,
+  getEventsByClockId: PropTypes.func.isRequired,
+  deleteEvent: PropTypes.func.isRequired,
+  updateEvent: PropTypes.func.isRequired,
+  deleteAllEvent: PropTypes.func.isRequired,
+};
 export default ShowEvents;

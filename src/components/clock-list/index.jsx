@@ -1,6 +1,7 @@
 import React from "react";
 import ClockListItem from "./clock-list-item";
 import { ClockListWrapper, H4 } from "./clock-list-style";
+import PropTypes from "prop-types";
 const ClockList = ({
   clocks,
   updateClock,
@@ -35,5 +36,14 @@ const ClockList = ({
     </ClockListWrapper>
   );
 };
-
+ClockList.propTypes = {
+  clocks: PropTypes.arrayOf(PropTypes.object),
+  updateClock: PropTypes.func.isRequired,
+  deleteClock: PropTypes.func.isRequired,
+  getEventsByClockId: PropTypes.func.isRequired,
+  addEvent: PropTypes.func.isRequired,
+  deleteEvent: PropTypes.func.isRequired,
+  updateEvent: PropTypes.func.isRequired,
+  deleteAllEvent: PropTypes.func.isRequired,
+};
 export default ClockList;

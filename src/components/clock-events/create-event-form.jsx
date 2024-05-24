@@ -6,6 +6,7 @@ import {
   SubmitBtn,
 } from "../ui/AllFormItem";
 import useEventForm from "./Hook/useEventForm";
+import PropTypes from "prop-types";
 
 const EventForm = ({
   values = { title: "", des: "", startDate: "", endDate: "" },
@@ -86,5 +87,18 @@ const EventForm = ({
     </ModalForm>
   );
 };
-
+EventForm.propTypes = {
+  values: PropTypes.shape({
+    title: PropTypes.string,
+    des: PropTypes.string,
+    startDate: PropTypes.string,
+    endDate: PropTypes.string,
+  }),
+  handleEvent: PropTypes.func,
+  isEdit: PropTypes.bool,
+  handleModal: PropTypes.func,
+  createEvent: PropTypes.bool,
+  updateEvent: PropTypes.func,
+  clockId: PropTypes.string,
+};
 export default EventForm;

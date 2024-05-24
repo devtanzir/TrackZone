@@ -43,7 +43,7 @@ const InputGroupContainer = ({
           onFocus={onFocus}
           onBlur={onBlur}
           onInput={onInput}
-          error={error}
+          $error={error}
         />
       )}
       {isSelect && (
@@ -69,7 +69,7 @@ const InputGroupContainer = ({
           onFocus={onFocus}
           onBlur={onBlur}
           onInput={onInput}
-          error={error}
+          $error={error}
         />
       )}
 

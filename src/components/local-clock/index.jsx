@@ -12,7 +12,6 @@ const LocalClock = ({ clock, UpdateLocalClock, createClock }) => {
     <LocalClockWrapper>
       {timer && (
         <ClockDisplay
-          local={true}
           date={timer}
           title={clock.title}
           timezone={timezone}

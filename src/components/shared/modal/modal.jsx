@@ -2,6 +2,7 @@ import ClockForm from "../clock-form";
 import EventForm from "../../clock-events/create-event-form";
 import EventItem from "../../clock-events/event-item";
 import { ModalBody, ModalInner, ModalSvg } from "./modal-style";
+import PropTypes from "prop-types";
 
 const Modal = ({
   isEventForm = false,
@@ -81,5 +82,29 @@ const Modal = ({
       </ModalBody>
     </>
   );
+};
+Modal.propTypes = {
+  isEventForm: PropTypes.bool,
+  isCreateForm: PropTypes.bool,
+  isEdit: PropTypes.bool,
+  handleEvent: PropTypes.func,
+  createEvent: PropTypes.bool,
+  handleModal: PropTypes.func,
+  createForm: PropTypes.bool,
+  handleClock: PropTypes.func,
+  edit: PropTypes.bool,
+  title: PropTypes.bool,
+  values: PropTypes.shape({
+    title: PropTypes.string,
+    timezone: PropTypes.string,
+    offset: PropTypes.number,
+  }),
+  handleShow: PropTypes.func,
+  showEvent: PropTypes.bool,
+  getEventsByClockId: PropTypes.func,
+  clockId: PropTypes.string,
+  deleteEvent: PropTypes.func,
+  updateEvent: PropTypes.func,
+  deleteAllEvent: PropTypes.func,
 };
 export default Modal;

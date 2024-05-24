@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import { TextH3, TextH5, TextP } from "../../ui/text";
 import { Wrapper } from "./clock-display-style";
+import PropTypes from "prop-types";
 
 const ClockDisplay = ({ date, title, timezone, offset }) => {
   const offsetHr = offset / 60;
@@ -17,6 +18,13 @@ const ClockDisplay = ({ date, title, timezone, offset }) => {
       </TextP>
     </Wrapper>
   );
+};
+
+ClockDisplay.propTypes = {
+  date: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
+  timezone: PropTypes.string.isRequired,
+  offset: PropTypes.number.isRequired,
 };
 
 export default ClockDisplay;

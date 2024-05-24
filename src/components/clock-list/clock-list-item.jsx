@@ -11,6 +11,7 @@ import {
   TimeMng,
   Wrapper,
 } from "./clock-list-style";
+import PropTypes from "prop-types";
 
 const ClockListItem = ({
   clock,
@@ -59,4 +60,19 @@ const ClockListItem = ({
   );
 };
 
+ClockListItem.propTypes = {
+  clock: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    timezone: PropTypes.string.isRequired,
+    offset: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
+  }),
+  updateClock: PropTypes.func.isRequired,
+  deleteClock: PropTypes.func.isRequired,
+  getEventsByClockId: PropTypes.func.isRequired,
+  addEvent: PropTypes.func.isRequired,
+  deleteEvent: PropTypes.func.isRequired,
+  updateEvent: PropTypes.func.isRequired,
+  deleteAllEvent: PropTypes.func.isRequired,
+};
 export default ClockListItem;
