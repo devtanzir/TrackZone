@@ -9,7 +9,7 @@ import useEventForm from "./Hook/useEventForm";
 import PropTypes from "prop-types";
 
 const EventForm = ({
-  values = { title: "", des: "", startDate: "", endDate: "" },
+  values = { title: "", des: "", startDate: "", endDate: "" }, // initial value of form
   handleEvent,
   isEdit,
   handleModal,

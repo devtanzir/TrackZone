@@ -20,12 +20,12 @@ const EventItem = ({
   updateEvent,
   deleteAllEvent,
 }) => {
-  const eventsById = getEventsByClockId(clockId);
-  const { handleState, state } = useEventEdit();
+  const eventsById = getEventsByClockId(clockId); // get all events with targeted clock
+  const { handleState, state } = useEventEdit(); // to handle modal
   return (
     <>
       <Wrapper>
-        {eventsById.length === 0 ? (
+        {eventsById.length === 0 ? ( // if there is no event
           <EventTitle>There is no Events</EventTitle>
         ) : (
           <>
