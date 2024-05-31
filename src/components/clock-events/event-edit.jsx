@@ -3,7 +3,7 @@ import { EventButton } from "./event-style";
 import useEventEdit from "./Hook/useEventEdit";
 import PropTypes from "prop-types";
 
-const EventEdit = ({ values, clockId, updateEvent }) => {
+const EventEdit = ({ values, updateEvent }) => {
   const { state, handleState } = useEventEdit();
   return (
     <>
@@ -15,7 +15,6 @@ const EventEdit = ({ values, clockId, updateEvent }) => {
           values={values}
           isEdit
           updateEvent={updateEvent}
-          clockId={clockId}
         />
       )}
     </>
@@ -29,7 +28,6 @@ EventEdit.propTypes = {
     endDate: PropTypes.string,
     title: PropTypes.string,
   }),
-  clockId: PropTypes.string,
   updateEvent: PropTypes.func,
 };
 

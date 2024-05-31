@@ -15,7 +15,6 @@ const EventForm = ({
   handleModal,
   createEvent,
   updateEvent,
-  clockId,
 }) => {
   const {
     formState: state,
@@ -24,14 +23,7 @@ const EventForm = ({
     handleFocus,
     handleSubmit,
     cb,
-  } = useEventForm(
-    values,
-    handleEvent,
-    isEdit,
-    handleModal,
-    updateEvent,
-    clockId
-  );
+  } = useEventForm(values, handleEvent, isEdit, handleModal, updateEvent);
   return (
     <ModalForm onSubmit={(e) => handleSubmit(e, cb)}>
       <ModalFormTitle>
@@ -99,6 +91,5 @@ EventForm.propTypes = {
   handleModal: PropTypes.func,
   createEvent: PropTypes.bool,
   updateEvent: PropTypes.func,
-  clockId: PropTypes.string,
 };
 export default EventForm;

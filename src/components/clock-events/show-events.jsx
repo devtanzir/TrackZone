@@ -4,7 +4,6 @@ import useEventEdit from "./Hook/useEventEdit";
 import PropTypes from "prop-types";
 
 const ShowEvents = ({
-  getEventsByClockId,
   clock,
   updateEvent,
   clockId,
@@ -21,7 +20,6 @@ const ShowEvents = ({
           handleShow={handleState}
           showEvent
           clock={clock}
-          getEventsByClockId={getEventsByClockId}
           clockId={clockId}
           deleteEvent={deleteEvent}
           updateEvent={updateEvent}
@@ -34,7 +32,6 @@ const ShowEvents = ({
 
 ShowEvents.propTypes = {
   id: PropTypes.string,
-  getEventsByClockId: PropTypes.func.isRequired,
   deleteEvent: PropTypes.func.isRequired,
   updateEvent: PropTypes.func.isRequired,
   deleteAllEvent: PropTypes.func.isRequired,

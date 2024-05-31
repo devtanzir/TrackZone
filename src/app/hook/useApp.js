@@ -17,20 +17,14 @@ const useApp = () => {
     date: null,
   };
   const [localClock, setLocalClock] = useState({ ...LOCAL_CLOCK_INIT });
-  const [clocks, setClocks] = useState([]);
 
   const { state } = useFetch();
 
   /**
    * Call the Custom Event hook
    */
-  const {
-    addEvent,
-    getEventsByClockId,
-    updateEvent,
-    deleteEvent,
-    deleteEventByClockId,
-  } = useEvent();
+  const { addEvent, updateEvent, deleteEvent, deleteEventByClockId } =
+    useEvent();
   /**
    * This will be update the local data
    * @param {Object} data
@@ -112,10 +106,8 @@ const useApp = () => {
 
   return {
     localClock,
-    clocks,
     state,
     addEvent,
-    getEventsByClockId,
     updateEvent,
     deleteEvent,
     deleteEventByClockId,

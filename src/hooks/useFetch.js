@@ -35,7 +35,6 @@ const useFetch = () => {
 
   return {
     state,
-    events,
   };
 };
 

@@ -19,7 +19,6 @@ const Modal = ({
   values,
   handleShow,
   showEvent = false,
-  getEventsByClockId,
   clockId,
   deleteEvent,
   updateEvent,
@@ -51,7 +50,6 @@ const Modal = ({
           </ModalSvg>
           {showEvent && (
             <EventItem
-              getEventsByClockId={getEventsByClockId}
               clock={clock}
               clockId={clockId}
               deleteEvent={deleteEvent}
@@ -65,7 +63,6 @@ const Modal = ({
               handleModal={handleModal}
               createEvent={createEvent}
               updateEvent={updateEvent}
-              clockId={clockId}
               values={values}
               isEdit={isEdit}
             />

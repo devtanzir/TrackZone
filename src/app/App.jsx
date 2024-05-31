@@ -6,10 +6,8 @@ import { MainWrapper } from "./app-style";
 const App = () => {
   const {
     localClock,
-    clocks,
     state,
     addEvent,
-    getEventsByClockId,
     updateEvent,
     deleteEvent,
     deleteEventByClockId,
@@ -29,7 +27,6 @@ const App = () => {
         localClock={localClock.date} // pass the time to calculate the difference between two clocks
         addEvent={addEvent} // to add the event on parent clock
         deleteEvent={deleteEvent} // to delete event from state
-        getEventsByClockId={getEventsByClockId} // to get the event with their parent clock
         updateEvent={updateEvent} // event updater function
         deleteAllEvent={deleteEventByClockId} // delete all event with 1 button from targeted clock
         clocks={state} // pass all the clocks

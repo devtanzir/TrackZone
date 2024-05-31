@@ -15,13 +15,11 @@ import PropTypes from "prop-types";
 
 const EventItem = ({
   clock,
-  getEventsByClockId,
   clockId,
   deleteEvent,
   updateEvent,
   deleteAllEvent,
 }) => {
-  const eventsById = getEventsByClockId(clockId); // get all events with targeted clock
   const { handleState, state } = useEventEdit(); // to handle modal
   return (
     <>
@@ -36,11 +34,7 @@ const EventItem = ({
                 <P>{item.des}</P>
                 <StartEvent event={item} />
                 <ButtonWrapper>
-                  <EventEdit
-                    clockId={clockId}
-                    values={item}
-                    updateEvent={updateEvent}
-                  />
+                  <EventEdit values={item} updateEvent={updateEvent} />
                   <EventDelete
                     deleteEvent={deleteEvent}
                     clockId={item.clockId}
@@ -64,7 +58,6 @@ const EventItem = ({
   );
 };
 EventItem.propTypes = {
-  getEventsByClockId: PropTypes.func.isRequired,
   deleteEvent: PropTypes.func.isRequired,
   updateEvent: PropTypes.func.isRequired,
   deleteAllEvent: PropTypes.func.isRequired,

@@ -1,19 +1,6 @@
-import { useState } from "react";
-import { generateId } from "../utils/Id_Generator/GenerateId";
 import axios from "axios";
 
 const useEvent = () => {
-  const [state, setState] = useState({});
-  const getEventsByClockId = (clockId) => {
-    const keys = Object.keys(state).filter((item) => item.startsWith(clockId));
-    return keys.map((item) => state[item]);
-  };
-  const getEvents = (isArray = false) => {
-    if (!isArray) return state;
-
-    return Object.values(state);
-  };
-
   const addEvent = async (event, clockId) => {
     try {
       // Send the data to the API using Axios
@@ -91,13 +78,10 @@ const useEvent = () => {
   };
 
   return {
-    getEventsByClockId,
-    getEvents,
     addEvent,
     deleteEvent,
     deleteEventByClockId,
     updateEvent,
-    events: state,
   };
 };
 

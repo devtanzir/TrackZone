@@ -14,8 +14,7 @@ const useEventForm = (
   handleEvent,
   isEdit,
   handleModal,
-  updateEvent,
-  clockId
+  updateEvent
 ) => {
   const init = { ...values };
   /**

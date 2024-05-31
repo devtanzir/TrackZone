@@ -18,7 +18,6 @@ const ClockListItem = ({
   updateClock,
   deleteClock,
   localClock,
-  getEventsByClockId,
   addEvent,
   deleteEvent,
   updateEvent,
@@ -48,7 +47,6 @@ const ClockListItem = ({
           />
           <CreateEvent clockId={clock._id} addClock={addEvent} />
           <ShowEvents
-            getEventsByClockId={getEventsByClockId}
             clock={clock}
             clockId={clock._id}
             deleteEvent={deleteEvent}
@@ -70,7 +68,6 @@ ClockListItem.propTypes = {
   }),
   updateClock: PropTypes.func.isRequired,
   deleteClock: PropTypes.func.isRequired,
-  getEventsByClockId: PropTypes.func.isRequired,
   addEvent: PropTypes.func.isRequired,
   deleteEvent: PropTypes.func.isRequired,
   updateEvent: PropTypes.func.isRequired,
