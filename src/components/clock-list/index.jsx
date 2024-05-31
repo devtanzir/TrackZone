@@ -15,12 +15,12 @@ const ClockList = ({
 }) => {
   return (
     <ClockListWrapper>
-      {clocks.length === 0 ? (
+      {!clocks || clocks.length === 0 ? (
         <H4>There is no clock. Please enter one</H4>
       ) : (
         clocks.map((clock) => (
           <ClockListItem
-            key={clock.id}
+            key={clock._id}
             localClock={localClock}
             getEventsByClockId={getEventsByClockId}
             addEvent={addEvent}

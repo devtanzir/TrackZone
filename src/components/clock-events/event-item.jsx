@@ -14,6 +14,7 @@ import EventDelete from "./event-delete";
 import PropTypes from "prop-types";
 
 const EventItem = ({
+  clock,
   getEventsByClockId,
   clockId,
   deleteEvent,
@@ -25,12 +26,12 @@ const EventItem = ({
   return (
     <>
       <Wrapper>
-        {eventsById.length === 0 ? ( // if there is no event
+        {clock.events.length === 0 ? ( // if there is no event
           <EventTitle>There is no Events</EventTitle>
         ) : (
           <>
-            {eventsById.map((item) => (
-              <ItemDiv key={item.id}>
+            {clock.events.map((item) => (
+              <ItemDiv key={item._id}>
                 <EventTitle>{item.title}</EventTitle>
                 <P>{item.des}</P>
                 <StartEvent event={item} />

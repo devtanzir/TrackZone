@@ -49,6 +49,7 @@ const ClockListItem = ({
           <CreateEvent clockId={clock.id} addClock={addEvent} />
           <ShowEvents
             getEventsByClockId={getEventsByClockId}
+            clock={clock}
             clockId={clock.id}
             deleteEvent={deleteEvent}
             updateEvent={updateEvent}

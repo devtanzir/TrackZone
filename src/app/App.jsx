@@ -7,6 +7,7 @@ const App = () => {
   const {
     localClock,
     clocks,
+    state,
     addEvent,
     getEventsByClockId,
     updateEvent,
@@ -31,7 +32,7 @@ const App = () => {
         getEventsByClockId={getEventsByClockId} // to get the event with their parent clock
         updateEvent={updateEvent} // event updater function
         deleteAllEvent={deleteEventByClockId} // delete all event with 1 button from targeted clock
-        clocks={clocks} // pass all the clocks
+        clocks={state} // pass all the clocks
         updateClock={updateClock} // update clocks
         deleteClock={deleteClock} // delete clocks
       />

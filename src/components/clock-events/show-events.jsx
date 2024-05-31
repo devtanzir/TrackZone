@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 
 const ShowEvents = ({
   getEventsByClockId,
+  clock,
   updateEvent,
   clockId,
   deleteEvent,
@@ -19,6 +20,7 @@ const ShowEvents = ({
         <Modal
           handleShow={handleState}
           showEvent
+          clock={clock}
           getEventsByClockId={getEventsByClockId}
           clockId={clockId}
           deleteEvent={deleteEvent}

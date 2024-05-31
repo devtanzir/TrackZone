@@ -11,3 +11,11 @@ export const getOffset = (start = -11.5, ending = 12) => {
 export const getTimeZone = () => {
   return ["UTC", "GMT", ...Object.keys(TIMEZONE_OFFSET)];
 };
+
+export const structureClockObject = (state, events) => {
+  const result = state.map((clock) => {
+    clock.events = events.filter((event) => event.clockId === clock._id);
+  });
+  console.log(result, "result");
+  return result;
+};

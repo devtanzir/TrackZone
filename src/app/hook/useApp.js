@@ -1,6 +1,8 @@
 import { useState } from "react";
 import useEvent from "../../hooks/useEvent";
 import { generateId } from "../../utils/Id_Generator/GenerateId";
+import useFetch from "../../hooks/useFetch";
+import { structureClockObject } from "../../utils/timezone";
 /**
  * Custom app hook
  * @returns localClock, clocks, addEvent, getEventsByClockId, updateEvent, deleteEvent, deleteEventByClockId, UpdateLocalClock, createClock, updateClock, deleteClock,
@@ -17,6 +19,9 @@ const useApp = () => {
   };
   const [localClock, setLocalClock] = useState({ ...LOCAL_CLOCK_INIT });
   const [clocks, setClocks] = useState([]);
+
+  const { state } = useFetch();
+
   /**
    * Call the Custom Event hook
    */
@@ -71,6 +76,7 @@ const useApp = () => {
   return {
     localClock,
     clocks,
+    state,
     addEvent,
     getEventsByClockId,
     updateEvent,
