@@ -8,9 +8,7 @@ import { useState } from "react";
 const useCreateEvent = (addClock, clockId) => {
   const [isCreate, setIsCreate] = useState(false);
   const handleEvent = (events) => {
-    // when event form submit
-    events.clockId = clockId; // to target e clock
-    addClock(events); // function invoke
+    addClock(events, clockId); // function invoke
   };
   const handleModal = () => {
     setIsCreate(!isCreate); // handle the modal open & close

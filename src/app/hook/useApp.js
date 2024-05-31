@@ -1,8 +1,7 @@
 import { useState } from "react";
 import useEvent from "../../hooks/useEvent";
-import { generateId } from "../../utils/Id_Generator/GenerateId";
 import useFetch from "../../hooks/useFetch";
-import { structureClockObject } from "../../utils/timezone";
+import axios from "axios";
 /**
  * Custom app hook
  * @returns localClock, clocks, addEvent, getEventsByClockId, updateEvent, deleteEvent, deleteEventByClockId, UpdateLocalClock, createClock, updateClock, deleteClock,
@@ -46,31 +45,69 @@ const useApp = () => {
    * Create list of dynamic Clocks
    * @param {Object} clock
    */
-  const createClock = (clock) => {
-    clock.id = generateId(); // generate custom id
-    setClocks((prev) => [clock, ...prev]);
+  const createClock = async (values) => {
+    try {
+      // Send the data to the API using Axios
+      const response = await axios.post(
+        "http://localhost:4000/api/v1/clock/clock-create",
+        values
+      );
+
+      // Handle the response
+      if (response.status === 201) {
+        alert("Form submitted successfully!");
+      } else {
+        alert("Failed to submit the form");
+      }
+    } catch (error) {
+      console.error("Error submitting the form:", error);
+      alert("An error occurred while submitting the form");
+    }
   };
   /**
    * Update the dynamic clocks
    * @param {Object} updateData
    */
-  const updateClock = (updateData) => {
-    const updatedData = clocks.map((clock) => {
-      // map on the clock state
-      if (clock.id === updateData.id) {
-        return updateData; // update the data
+  const updateClock = async (updateData, clockId) => {
+    try {
+      // Send the data to the API using Axios
+      const response = await axios.patch(
+        `http://localhost:4000/api/v1/clock/${clockId}`,
+        updateData
+      );
+
+      // Handle the response
+      if (response.status === 200) {
+        alert("Form submitted successfully!");
+      } else {
+        alert("Failed to submit the form");
       }
-      return clock;
-    });
-    setClocks(updatedData);
+    } catch (error) {
+      console.error("Error submitting the form:", error);
+      alert("An error occurred while submitting the form");
+    }
   };
   /**
    * delete dynamic clock
    * @param {String} id
    */
-  const deleteClock = (id) => {
-    const updatedData = clocks.filter((clock) => clock.id !== id);
-    setClocks(updatedData);
+  const deleteClock = async (id) => {
+    try {
+      // Send the data to the API using Axios
+      const response = await axios.delete(
+        `http://localhost:4000/api/v1/clock/${id}`
+      );
+
+      // Handle the response
+      if (response.status === 203) {
+        alert("Clock Is Delete");
+      } else {
+        alert("Failed to delete the clock");
+      }
+    } catch (error) {
+      console.error("Error delete the clock:", error);
+      alert("An error occurred while deleting the clock");
+    }
   };
 
   return {

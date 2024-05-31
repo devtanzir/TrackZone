@@ -12,7 +12,7 @@ const ClockDisplay = ({ date, title, timezone, offset }) => {
       <TextP>
         {timezone}
         {(timezone === "GMT" || timezone === "UTC") &&
-          (offsetHr > 0
+          (offsetHr >= 0
             ? ` | +${Math.abs(offsetHr)}`
             : ` | -${Math.abs(offsetHr)}`)}
       </TextP>

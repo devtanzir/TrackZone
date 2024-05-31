@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { generateId } from "../utils/Id_Generator/GenerateId";
+import axios from "axios";
 
 const useEvent = () => {
   const [state, setState] = useState({});
@@ -13,42 +14,80 @@ const useEvent = () => {
     return Object.values(state);
   };
 
-  const addEvent = (event) => {
-    event.id = generateId();
+  const addEvent = async (event, clockId) => {
+    try {
+      // Send the data to the API using Axios
+      const response = await axios.post(
+        `http://localhost:4000/api/v1/event/${clockId}`,
+        event
+      );
 
-    setState((prev) => ({
-      ...prev,
-      [`${event.clockId}|${event.id}`]: event,
-    }));
-    return event;
+      // Handle the response
+      if (response.status === 201) {
+        alert("Form submitted successfully!");
+      } else {
+        alert("Failed to submit the form");
+      }
+    } catch (error) {
+      console.error("Error submitting the form:", error);
+      alert("An error occurred while submitting the form");
+    }
   };
-  const deleteEvent = (clockId, id) => {
-    const events = { ...state };
-    delete events[`${clockId}|${id}`];
-    setState(events);
-  };
-  const deleteEventByClockId = (clockId) => {
-    const events = Object.keys(state).filter(
-      (item) => !item.startsWith(clockId)
-    );
-    const filteredEvent = events.reduce((acc, cur) => {
-      acc = {
-        ...acc,
-        [cur]: state[cur],
-      };
-      return acc;
-    }, {});
+  const deleteEvent = async (id) => {
+    try {
+      // Send the data to the API using Axios
+      const response = await axios.delete(
+        `http://localhost:4000/api/v1/event/${id}`
+      );
 
-    setState(filteredEvent);
+      // Handle the response
+      if (response.status === 203) {
+        alert("Event Is Delete");
+      } else {
+        alert("Failed to delete the Event");
+      }
+    } catch (error) {
+      console.error("Error delete the Event:", error);
+      alert("An error occurred while deleting the Event");
+    }
   };
-  const updateEvent = (updatedEvent, clockId, id) => {
-    const key = `${clockId}|${id}`;
-    const events = { ...state };
-    events[key] = {
-      ...events[key],
-      ...updatedEvent,
-    };
-    setState(events);
+  const deleteEventByClockId = async (clockId) => {
+    try {
+      // Send the data to the API using Axios
+      const response = await axios.delete(
+        `http://localhost:4000/api/v1/event/delete-all/${clockId}`
+      );
+
+      // Handle the response
+      if (response.status === 203) {
+        alert("Event Is Delete");
+      } else {
+        alert("Failed to delete the Event");
+      }
+    } catch (error) {
+      console.error("Error delete the Event:", error);
+      alert("An error occurred while deleting the Event");
+    }
+  };
+  const updateEvent = async (updatedEvent, id) => {
+    console.log(updatedEvent);
+    try {
+      // Send the data to the API using Axios
+      const response = await axios.patch(
+        `http://localhost:4000/api/v1/event/${id}`,
+        updatedEvent
+      );
+
+      // Handle the response
+      if (response.status === 200) {
+        alert("Form submitted successfully!");
+      } else {
+        alert("Failed to submit the form");
+      }
+    } catch (error) {
+      console.error("Error submitting the form:", error);
+      alert("An error occurred while submitting the form");
+    }
   };
 
   return {

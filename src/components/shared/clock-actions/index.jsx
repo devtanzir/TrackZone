@@ -13,14 +13,8 @@ const ClockActions = ({
   createClock,
   deleteClock,
 }) => {
-  const {
-    isEdit,
-    isCreate,
-    handleModal,
-    handleEditModal,
-    handleClock,
-    handleEditClock,
-  } = useAction(createClock);
+  const { isEdit, isCreate, handleModal, handleEditModal, handleClock } =
+    useAction(createClock);
   const { handleState, state } = useEventEdit();
   return (
     <ButtonWrapper>
@@ -34,7 +28,7 @@ const ClockActions = ({
             <Confirm
               handleState={handleState}
               deleteClock={deleteClock}
-              clockId={clock.id}
+              clockId={clock._id}
             />
           )}
         </>
@@ -43,7 +37,7 @@ const ClockActions = ({
         <>
           <Modal
             handleModal={handleEditModal}
-            handleClock={handleEditClock}
+            handleClock={updateClock}
             isCreateForm
             values={clock}
             title={!local}

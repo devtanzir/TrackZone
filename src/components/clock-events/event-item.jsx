@@ -26,7 +26,7 @@ const EventItem = ({
   return (
     <>
       <Wrapper>
-        {clock.events.length === 0 ? ( // if there is no event
+        {!clock.events || clock.events.length === 0 ? ( // if there is no event
           <EventTitle>There is no Events</EventTitle>
         ) : (
           <>
@@ -44,7 +44,7 @@ const EventItem = ({
                   <EventDelete
                     deleteEvent={deleteEvent}
                     clockId={item.clockId}
-                    id={item.id}
+                    id={item._id}
                   />
                 </ButtonWrapper>
               </ItemDiv>

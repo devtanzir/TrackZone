@@ -46,11 +46,11 @@ const ClockListItem = ({
             updateClock={updateClock}
             deleteClock={deleteClock}
           />
-          <CreateEvent clockId={clock.id} addClock={addEvent} />
+          <CreateEvent clockId={clock._id} addClock={addEvent} />
           <ShowEvents
             getEventsByClockId={getEventsByClockId}
             clock={clock}
-            clockId={clock.id}
+            clockId={clock._id}
             deleteEvent={deleteEvent}
             updateEvent={updateEvent}
             deleteAllEvent={deleteAllEvent}
@@ -66,7 +66,7 @@ ClockListItem.propTypes = {
     title: PropTypes.string.isRequired,
     timezone: PropTypes.string.isRequired,
     offset: PropTypes.number.isRequired,
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
   }),
   updateClock: PropTypes.func.isRequired,
   deleteClock: PropTypes.func.isRequired,

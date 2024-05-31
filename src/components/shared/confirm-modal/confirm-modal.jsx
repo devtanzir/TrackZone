@@ -14,7 +14,7 @@ import PropTypes from "prop-types";
 const Confirm = ({ handleState, deleteClock, clockId, deleteEvent, id }) => {
   const deleteData = () => {
     if (deleteEvent) {
-      deleteEvent(clockId, id);
+      deleteEvent(id);
     } else {
       deleteClock(clockId);
     }

@@ -1,10 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { structureClockObject } from "../utils/timezone";
 const useFetch = () => {
   const [state, setState] = useState(null);
   const [events, setEvents] = useState(null);
-  const [clock, setClock] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -27,15 +25,17 @@ const useFetch = () => {
     })();
   }, []);
 
-  // if (state && events) {
-  //   const finalClock = structureClockObject(state, events);
-  //   // setClock(finalClock);
-  // }
+  useEffect(() => {
+    if (state && events) {
+      state.forEach((clock) => {
+        clock.events = events.filter((event) => event.clockId === clock._id);
+      });
+    }
+  }, [state, events]);
 
   return {
     state,
     events,
-    clock,
   };
 };
 

@@ -1,7 +1,7 @@
 import useForm from "../../../../hooks/useForm";
 
-const useClockForm = (values, handleClock, handleModal) => {
-  const init = { ...values };
+const useClockForm = (clockValues, handleClock, handleModal) => {
+  const init = { ...clockValues };
   const validate = (values) => {
     const errors = {};
     if (!values.title) {
@@ -23,7 +23,7 @@ const useClockForm = (values, handleClock, handleModal) => {
     if (hasError) {
       setErrorOnSubmit(errors);
     } else {
-      handleClock(values);
+      handleClock(values, clockValues._id);
       handleModal();
     }
   };

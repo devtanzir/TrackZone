@@ -63,7 +63,7 @@ const useEventForm = (
       setErrorOnSubmit(errors); // if form has error
     } else {
       if (!isEdit) handleEvent(values); // if create form
-      if (isEdit) updateEvent(values, clockId, values.id); // if edit form
+      if (isEdit) updateEvent(values, values._id); // if edit form
       handleModal();
     }
   };
