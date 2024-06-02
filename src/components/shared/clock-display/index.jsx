@@ -10,9 +10,9 @@ const ClockDisplay = ({ date, title, timezone, offset, loading }) => {
   if (loading) {
     return (
       <Wrapper>
-        <Skeleton $width={"300px"} />
-        <Skeleton $width={"200px"} />
-        <Skeleton $width={"150px"} />
+        <Skeleton $width={"50%"} />
+        <Skeleton $width={"40%"} />
+        <Skeleton $width={"30%"} />
       </Wrapper>
     );
   }

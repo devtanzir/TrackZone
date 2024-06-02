@@ -21,8 +21,8 @@ const ClockActions = ({
   if (loading) {
     return (
       <ButtonWrapper>
-        <Skeleton $width={"60px"} $height={"41px"} />
-        <Skeleton $width={"60px"} $height={"41px"} />
+        <Skeleton $width={"49%"} $height={"41px"} />
+        <Skeleton $width={"49%"} $height={"41px"} />
       </ButtonWrapper>
     );
   }

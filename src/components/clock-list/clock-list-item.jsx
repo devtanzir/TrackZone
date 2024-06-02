@@ -52,13 +52,13 @@ const ClockListItem = ({
             deleteClock={deleteClock}
           />
           {loading ? (
-            <Skeleton $height={"41px"} $width={"115px"} />
+            <Skeleton $height={"41px"} $width={"100%"} />
           ) : (
             <CreateEvent clockId={clock._id} addClock={addEvent} />
           )}
 
           {loading ? (
-            <Skeleton $height={"41px"} $width={"100px"} />
+            <Skeleton $height={"41px"} $width={"100%"} />
           ) : (
             <ShowEvents
               clock={clock}

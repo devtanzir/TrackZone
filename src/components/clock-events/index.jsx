@@ -9,7 +9,7 @@ const CreateEvent = ({ addClock, clockId }) => {
     clockId
   );
   return (
-    <div>
+    <>
       <Button onClick={handleModal}>Create Event</Button>
       {isCreate && (
         <Modal
@@ -19,7 +19,7 @@ const CreateEvent = ({ addClock, clockId }) => {
           handleModal={handleModal}
         />
       )}
-    </div>
+    </>
   );
 };
 CreateEvent.propTypes = {
