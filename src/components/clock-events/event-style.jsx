@@ -16,12 +16,15 @@ export const Wrapper = styled.div`
 export const EventTitle = styled.h3`
   font-size: 26px;
   text-transform: capitalize;
-  margin-bottom: 5px;
+  margin-bottom: 0;
 `;
 export const ItemDiv = styled.div`
   background: #f7f7f7;
   border-radius: 7px;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
   cursor: pointer;
   &:hover {
     background-color: #f1f2f6;
@@ -29,7 +32,7 @@ export const ItemDiv = styled.div`
 `;
 export const P = styled.p`
   font-size: 15px;
-  margin-bottom: 5px;
+  margin-bottom: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
   color: #888585;
@@ -57,14 +60,14 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const Finish = styled.p`
-  margin-bottom: 5px;
+  margin-bottom: 0;
   color: #78e08f;
 `;
 export const End = styled.p`
-  margin-bottom: 5px;
+  margin-bottom: 0;
   color: #eb2f06;
 `;
 export const Start = styled.p`
-  margin-bottom: 5px;
+  margin-bottom: 0;
   color: #f6b93b;
 `;

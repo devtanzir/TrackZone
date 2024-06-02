@@ -1,6 +1,8 @@
 import axios from "axios";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
-const useEvent = () => {
+const useEvent = (getData) => {
   const addEvent = async (event, clockId) => {
     try {
       // Send the data to the API using Axios
@@ -11,13 +13,14 @@ const useEvent = () => {
 
       // Handle the response
       if (response.status === 201) {
-        alert("Form submitted successfully!");
+        toast.success("Event Created successfully!");
+        getData();
       } else {
-        alert("Failed to submit the form");
+        toast.error("Failed to Create the event");
       }
     } catch (error) {
       console.error("Error submitting the form:", error);
-      alert("An error occurred while submitting the form");
+      toast.error("An error occurred while submitting the form");
     }
   };
   const deleteEvent = async (id) => {
@@ -29,13 +32,14 @@ const useEvent = () => {
 
       // Handle the response
       if (response.status === 203) {
-        alert("Event Is Delete");
+        toast.success("Event Is Delete");
+        getData();
       } else {
-        alert("Failed to delete the Event");
+        toast.error("Failed to delete the Event");
       }
     } catch (error) {
       console.error("Error delete the Event:", error);
-      alert("An error occurred while deleting the Event");
+      toast.error("An error occurred while deleting the Event");
     }
   };
   const deleteEventByClockId = async (clockId) => {
@@ -47,17 +51,17 @@ const useEvent = () => {
 
       // Handle the response
       if (response.status === 203) {
-        alert("Event Is Delete");
+        toast.success("All Event Is Deleted");
+        getData();
       } else {
-        alert("Failed to delete the Event");
+        toast.error("Failed to delete all Event");
       }
     } catch (error) {
       console.error("Error delete the Event:", error);
-      alert("An error occurred while deleting the Event");
+      toast.error("An error occurred while deleting the Event");
     }
   };
   const updateEvent = async (updatedEvent, id) => {
-    console.log(updatedEvent);
     try {
       // Send the data to the API using Axios
       const response = await axios.patch(
@@ -67,13 +71,14 @@ const useEvent = () => {
 
       // Handle the response
       if (response.status === 200) {
-        alert("Form submitted successfully!");
+        toast.success("Event Updated successfully!");
+        getData();
       } else {
-        alert("Failed to submit the form");
+        toast.error("Failed to update the event");
       }
     } catch (error) {
       console.error("Error submitting the form:", error);
-      alert("An error occurred while submitting the form");
+      toast.error("An error occurred while submitting the form");
     }
   };
 

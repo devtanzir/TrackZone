@@ -2,9 +2,20 @@ import { format } from "date-fns";
 import { TextH3, TextH5, TextP } from "../../ui/text";
 import { Wrapper } from "./clock-display-style";
 import PropTypes from "prop-types";
+import { Skeleton } from "../loader-skeleton/skeleton";
 
-const ClockDisplay = ({ date, title, timezone, offset }) => {
+const ClockDisplay = ({ date, title, timezone, offset, loading }) => {
   const offsetHr = offset / 60;
+
+  if (loading) {
+    return (
+      <Wrapper>
+        <Skeleton $width={"300px"} />
+        <Skeleton $width={"200px"} />
+        <Skeleton $width={"150px"} />
+      </Wrapper>
+    );
+  }
   return (
     <Wrapper>
       <TextH3>{title}</TextH3>

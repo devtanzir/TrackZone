@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 const ShowEvents = ({
   clock,
   updateEvent,
+  loading,
   clockId,
   deleteEvent,
   deleteAllEvent,
@@ -20,6 +21,7 @@ const ShowEvents = ({
           handleShow={handleState}
           showEvent
           clock={clock}
+          loading={loading}
           clockId={clockId}
           deleteEvent={deleteEvent}
           updateEvent={updateEvent}

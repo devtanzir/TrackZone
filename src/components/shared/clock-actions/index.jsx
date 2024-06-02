@@ -5,9 +5,11 @@ import { ButtonWrapper } from "./action-style";
 import useEventEdit from "../../clock-events/Hook/useEventEdit";
 import Confirm from "../confirm-modal/confirm-modal";
 import PropTypes from "prop-types";
+import { Skeleton } from "../loader-skeleton/skeleton";
 
 const ClockActions = ({
   local = false,
+  loading,
   clock,
   updateClock,
   createClock,
@@ -16,6 +18,14 @@ const ClockActions = ({
   const { isEdit, isCreate, handleModal, handleEditModal, handleClock } =
     useAction(createClock);
   const { handleState, state } = useEventEdit();
+  if (loading) {
+    return (
+      <ButtonWrapper>
+        <Skeleton $width={"60px"} $height={"41px"} />
+        <Skeleton $width={"60px"} $height={"41px"} />
+      </ButtonWrapper>
+    );
+  }
   return (
     <ButtonWrapper>
       <Button onClick={handleEditModal}>Edit</Button>

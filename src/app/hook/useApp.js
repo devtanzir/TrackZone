@@ -2,6 +2,7 @@ import { useState } from "react";
 import useEvent from "../../hooks/useEvent";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
+import { toast } from "react-toastify";
 /**
  * Custom app hook
  * @returns localClock, clocks, addEvent, getEventsByClockId, updateEvent, deleteEvent, deleteEventByClockId, UpdateLocalClock, createClock, updateClock, deleteClock,
@@ -18,13 +19,18 @@ const useApp = () => {
   };
   const [localClock, setLocalClock] = useState({ ...LOCAL_CLOCK_INIT });
 
-  const { state } = useFetch();
+  const { state, getData, loading } = useFetch();
 
   /**
    * Call the Custom Event hook
    */
-  const { addEvent, updateEvent, deleteEvent, deleteEventByClockId } =
-    useEvent();
+  const {
+    addEvent,
+    updateEvent,
+    deleteEvent,
+    deleteEventByClockId,
+    eventLoading,
+  } = useEvent(getData);
   /**
    * This will be update the local data
    * @param {Object} data
@@ -49,13 +55,14 @@ const useApp = () => {
 
       // Handle the response
       if (response.status === 201) {
-        alert("Form submitted successfully!");
+        toast.success("Clock Created successfully!");
+        getData();
       } else {
-        alert("Failed to submit the form");
+        toast.error("Failed to create the clock");
       }
     } catch (error) {
       console.error("Error submitting the form:", error);
-      alert("An error occurred while submitting the form");
+      toast.error("An error occurred while submitting the form");
     }
   };
   /**
@@ -72,13 +79,14 @@ const useApp = () => {
 
       // Handle the response
       if (response.status === 200) {
-        alert("Form submitted successfully!");
+        toast.success("Clock Updated successfully!");
+        getData();
       } else {
-        alert("Failed to submit the form");
+        toast.error("Failed to update the clock");
       }
     } catch (error) {
       console.error("Error submitting the form:", error);
-      alert("An error occurred while submitting the form");
+      toast.error("An error occurred while submitting the form");
     }
   };
   /**
@@ -94,19 +102,22 @@ const useApp = () => {
 
       // Handle the response
       if (response.status === 203) {
-        alert("Clock Is Delete");
+        toast.success("Clock Is Deleted");
+        getData();
       } else {
-        alert("Failed to delete the clock");
+        toast.error("Failed to delete the clock");
       }
     } catch (error) {
       console.error("Error delete the clock:", error);
-      alert("An error occurred while deleting the clock");
+      toast.error("An error occurred while deleting the clock");
     }
   };
 
   return {
     localClock,
     state,
+    loading,
+    eventLoading,
     addEvent,
     updateEvent,
     deleteEvent,

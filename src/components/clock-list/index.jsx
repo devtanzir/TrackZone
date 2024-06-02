@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 const ClockList = ({
   clocks,
   updateClock,
+  loading,
   deleteClock,
   localClock,
   addEvent,
@@ -19,6 +20,7 @@ const ClockList = ({
         clocks.map((clock) => (
           <ClockListItem
             key={clock._id}
+            loading={loading}
             localClock={localClock}
             addEvent={addEvent}
             deleteEvent={deleteEvent}

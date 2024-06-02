@@ -2,11 +2,14 @@ import LocalClock from "../components/local-clock";
 import ClockList from "../components/clock-list";
 import useApp from "./hook/useApp";
 import { MainWrapper } from "./app-style";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const {
     localClock,
     state,
+    loading,
     addEvent,
     updateEvent,
     deleteEvent,
@@ -18,12 +21,15 @@ const App = () => {
   } = useApp();
   return (
     <MainWrapper>
+      <ToastContainer />
       <LocalClock
+        loading={loading}
         clock={localClock} // pass the clock object from state
         UpdateLocalClock={UpdateLocalClock} // pass the function to upgrade the local clock
         createClock={createClock} // pass the function to Create multiple clocks
       />
       <ClockList
+        loading={loading}
         localClock={localClock.date} // pass the time to calculate the difference between two clocks
         addEvent={addEvent} // to add the event on parent clock
         deleteEvent={deleteEvent} // to delete event from state

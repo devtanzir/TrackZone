@@ -10,6 +10,7 @@ const Modal = ({
   isEdit = false,
   handleEvent,
   createEvent,
+  loading,
   handleModal,
   createForm,
   handleClock,
@@ -51,6 +52,7 @@ const Modal = ({
           {showEvent && (
             <EventItem
               clock={clock}
+              loading={loading}
               clockId={clockId}
               deleteEvent={deleteEvent}
               updateEvent={updateEvent}

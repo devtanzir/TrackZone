@@ -12,10 +12,12 @@ import {
   Wrapper,
 } from "./clock-list-style";
 import PropTypes from "prop-types";
+import { Skeleton } from "../shared/loader-skeleton/skeleton";
 
 const ClockListItem = ({
   clock,
   updateClock,
+  loading,
   deleteClock,
   localClock,
   addEvent,
@@ -33,26 +35,40 @@ const ClockListItem = ({
     <Wrapper>
       <ClockDisplay
         date={timer}
+        loading={loading}
         title={clock.title}
         timezone={clock.timezone}
         offset={clock.offset}
       />
       <ClockItemWrapper>
-        <TimeMng>{formatDistance(date, localClock)}</TimeMng>
+        <TimeMng>
+          {loading ? <Skeleton /> : formatDistance(date, localClock)}
+        </TimeMng>
         <ThreeBtn>
           <ClockActions
             clock={clock}
+            loading={loading}
             updateClock={updateClock}
             deleteClock={deleteClock}
           />
-          <CreateEvent clockId={clock._id} addClock={addEvent} />
-          <ShowEvents
-            clock={clock}
-            clockId={clock._id}
-            deleteEvent={deleteEvent}
-            updateEvent={updateEvent}
-            deleteAllEvent={deleteAllEvent}
-          />
+          {loading ? (
+            <Skeleton $height={"41px"} $width={"115px"} />
+          ) : (
+            <CreateEvent clockId={clock._id} addClock={addEvent} />
+          )}
+
+          {loading ? (
+            <Skeleton $height={"41px"} $width={"100px"} />
+          ) : (
+            <ShowEvents
+              clock={clock}
+              loading={loading}
+              clockId={clock._id}
+              deleteEvent={deleteEvent}
+              updateEvent={updateEvent}
+              deleteAllEvent={deleteAllEvent}
+            />
+          )}
         </ThreeBtn>
       </ClockItemWrapper>
     </Wrapper>
