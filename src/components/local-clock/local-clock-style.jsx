@@ -30,10 +30,19 @@ export const LocalClockWrapper = styled.div`
     align-items: flex-start;
     ${ButtonWrapper} {
       padding-left: 15px;
+      width: 100%;
     }
     ${Button} {
       padding: 9px 12px;
       font-size: 12px;
+    }
+  }
+  /* Extra small devices (phones, less than 576px) */
+  @media (max-width: 767.98px) {
+    ${ButtonWrapper} {
+      width: 100%;
+    }
+    ${Button} {
     }
   }
 `;
