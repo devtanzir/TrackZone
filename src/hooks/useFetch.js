@@ -7,11 +7,12 @@ const useFetch = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const API_PREFIX = import.meta.env.VITE_API_PREFIX;
     // Using IIFE
     (async () => {
       try {
         // Fetch data from the backend
-        const response = await axios.get("http://localhost:4000/api/v1/clock");
+        const response = await axios.get(`${API_PREFIX}/clock`);
         setState(response.data);
         setLoading(false);
       } catch (error) {
@@ -22,7 +23,7 @@ const useFetch = () => {
     (async () => {
       try {
         // Fetch data from the backend
-        const response = await axios.get("http://localhost:4000/api/v1/event");
+        const response = await axios.get(`${API_PREFIX}/event`);
         setEvents(response.data);
         setLoading(false);
       } catch (error) {

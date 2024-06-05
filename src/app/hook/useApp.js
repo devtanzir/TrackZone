@@ -21,6 +21,7 @@ const useApp = () => {
 
   const { state, getData, loading } = useFetch();
 
+  const API_PREFIX = import.meta.env.VITE_API_PREFIX;
   /**
    * Call the Custom Event hook
    */
@@ -49,7 +50,7 @@ const useApp = () => {
     try {
       // Send the data to the API using Axios
       const response = await axios.post(
-        "http://localhost:4000/api/v1/clock/clock-create",
+        `${API_PREFIX}/clock/clock-create`,
         values
       );
 
@@ -73,7 +74,7 @@ const useApp = () => {
     try {
       // Send the data to the API using Axios
       const response = await axios.patch(
-        `http://localhost:4000/api/v1/clock/${clockId}`,
+        `${API_PREFIX}/clock/${clockId}`,
         updateData
       );
 
@@ -96,9 +97,7 @@ const useApp = () => {
   const deleteClock = async (id) => {
     try {
       // Send the data to the API using Axios
-      const response = await axios.delete(
-        `http://localhost:4000/api/v1/clock/${id}`
-      );
+      const response = await axios.delete(`${API_PREFIX}/clock/${id}`);
 
       // Handle the response
       if (response.status === 203) {

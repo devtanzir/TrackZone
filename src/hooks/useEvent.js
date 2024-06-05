@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
  * @returns
  */
 const useEvent = (getData) => {
+  const API_PREFIX = import.meta.env.VITE_API_PREFIX;
   /**
    * add event function
    * @param {Object} event
@@ -16,7 +17,7 @@ const useEvent = (getData) => {
     try {
       // Send the data to the API using Axios
       const response = await axios.post(
-        `http://localhost:4000/api/v1/event/${clockId}`,
+        `${API_PREFIX}/event/${clockId}`,
         event
       );
 
@@ -39,9 +40,7 @@ const useEvent = (getData) => {
   const deleteEvent = async (id) => {
     try {
       // Send the data to the API using Axios
-      const response = await axios.delete(
-        `http://localhost:4000/api/v1/event/${id}`
-      );
+      const response = await axios.delete(`${API_PREFIX}/event/${id}`);
 
       // Handle the response
       if (response.status === 203) {
@@ -63,7 +62,7 @@ const useEvent = (getData) => {
     try {
       // Send the data to the API using Axios
       const response = await axios.delete(
-        `http://localhost:4000/api/v1/event/delete-all/${clockId}`
+        `${API_PREFIX}/event/delete-all/${clockId}`
       );
 
       // Handle the response
@@ -87,7 +86,7 @@ const useEvent = (getData) => {
     try {
       // Send the data to the API using Axios
       const response = await axios.patch(
-        `http://localhost:4000/api/v1/event/${id}`,
+        `${API_PREFIX}/event/${id}`,
         updatedEvent
       );
 
