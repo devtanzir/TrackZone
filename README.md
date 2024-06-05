@@ -37,7 +37,7 @@ with npm
 
 with yarn 
 ```bash
-  yarn | yarn add
+  yarn or yarn add
   yarn dev
 ```
 ## After this go back to current repository
@@ -55,7 +55,7 @@ with yarn
 
 - with yarn 
 ```bash
-  yarn | yarn add
+  yarn or yarn add
   yarn dev
 ```
 
