@@ -7,6 +7,7 @@ const useFetch = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Using IIFE
     (async () => {
       try {
         // Fetch data from the backend
@@ -17,6 +18,7 @@ const useFetch = () => {
         console.error("Error fetching data:", error);
       }
     })();
+    // Using IIFE
     (async () => {
       try {
         // Fetch data from the backend
@@ -31,6 +33,7 @@ const useFetch = () => {
 
   useEffect(() => {
     if (state && events) {
+      // customize the state add event in clock
       state.forEach((clock) => {
         clock.events = events.filter((event) => event.clockId === clock._id);
       });
@@ -39,6 +42,7 @@ const useFetch = () => {
   }, [state, events]);
 
   const getData = () => {
+    // when data add , edit , delete update rerender the component
     setNeedLoad((prev) => !prev);
   };
 

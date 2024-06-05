@@ -33,7 +33,14 @@ const ShowEvents = ({
 };
 
 ShowEvents.propTypes = {
-  id: PropTypes.string,
+  clock: PropTypes.shape({
+    events: PropTypes.array,
+    offset: PropTypes.number.isRequired,
+    timezone: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }),
+  loading: PropTypes.bool.isRequired,
+  clockId: PropTypes.string,
   deleteEvent: PropTypes.func.isRequired,
   updateEvent: PropTypes.func.isRequired,
   deleteAllEvent: PropTypes.func.isRequired,

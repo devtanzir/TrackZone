@@ -82,6 +82,8 @@ ClockListItem.propTypes = {
     offset: PropTypes.number.isRequired,
     id: PropTypes.string,
   }),
+  loading: PropTypes.bool.isRequired,
+  localClock: PropTypes.object,
   updateClock: PropTypes.func.isRequired,
   deleteClock: PropTypes.func.isRequired,
   addEvent: PropTypes.func.isRequired,

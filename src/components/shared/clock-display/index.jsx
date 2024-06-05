@@ -36,6 +36,7 @@ ClockDisplay.propTypes = {
   title: PropTypes.string.isRequired,
   timezone: PropTypes.string.isRequired,
   offset: PropTypes.number.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default ClockDisplay;

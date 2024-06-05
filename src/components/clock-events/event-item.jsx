@@ -92,6 +92,13 @@ const EventItem = ({
   );
 };
 EventItem.propTypes = {
+  clock: PropTypes.shape({
+    events: PropTypes.arrayOf(PropTypes.object),
+    offset: PropTypes.number.isRequired,
+    timezone: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }),
+  loading: PropTypes.bool.isRequired,
   deleteEvent: PropTypes.func.isRequired,
   updateEvent: PropTypes.func.isRequired,
   deleteAllEvent: PropTypes.func.isRequired,

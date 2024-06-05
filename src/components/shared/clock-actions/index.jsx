@@ -74,6 +74,8 @@ ClockActions.propTypes = {
     timezone: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
   }),
+
+  loading: PropTypes.bool.isRequired,
   updateClock: PropTypes.func,
   createClock: PropTypes.func,
   deleteClock: PropTypes.func,

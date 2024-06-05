@@ -1,8 +1,17 @@
 import axios from "axios";
-import { useState } from "react";
 import { toast } from "react-toastify";
 
+/**
+ * handle all event with api
+ * @param {Function} getData
+ * @returns
+ */
 const useEvent = (getData) => {
+  /**
+   * add event function
+   * @param {Object} event
+   * @param {String} clockId
+   */
   const addEvent = async (event, clockId) => {
     try {
       // Send the data to the API using Axios
@@ -23,6 +32,10 @@ const useEvent = (getData) => {
       toast.error("An error occurred while submitting the form");
     }
   };
+  /**
+   * delete event
+   * @param {String} id
+   */
   const deleteEvent = async (id) => {
     try {
       // Send the data to the API using Axios
@@ -42,6 +55,10 @@ const useEvent = (getData) => {
       toast.error("An error occurred while deleting the Event");
     }
   };
+  /**
+   * Delete event by clock id
+   * @param {String} clockId
+   */
   const deleteEventByClockId = async (clockId) => {
     try {
       // Send the data to the API using Axios
@@ -61,6 +78,11 @@ const useEvent = (getData) => {
       toast.error("An error occurred while deleting the Event");
     }
   };
+  /**
+   * update event function
+   * @param {Function} updatedEvent
+   * @param {String} id
+   */
   const updateEvent = async (updatedEvent, id) => {
     try {
       // Send the data to the API using Axios

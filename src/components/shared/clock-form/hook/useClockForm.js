@@ -1,5 +1,12 @@
 import useForm from "../../../../hooks/useForm";
 
+/**
+ * custom clock form hook
+ * @param {Object} clockValues
+ * @param {Function} handleClock
+ * @param {Function} handleModal
+ * @returns call the use form hook and pass the value
+ */
 const useClockForm = (clockValues, handleClock, handleModal) => {
   const init = { ...clockValues };
   const validate = (values) => {
@@ -19,6 +26,10 @@ const useClockForm = (clockValues, handleClock, handleModal) => {
     setErrorOnSubmit,
   } = useForm({ init, validate });
 
+  /**
+   * Handle Submit function
+   * @param {*} param0
+   */
   const cb = ({ hasError, values, errors }) => {
     if (hasError) {
       setErrorOnSubmit(errors);
