@@ -45,6 +45,7 @@ with yarn
 - clone this repository
 
 - provide original api endpoints
+- provide .env data
 
 - with npm 
 ```bash
