@@ -19,7 +19,18 @@ const useApp = () => {
   };
   const [localClock, setLocalClock] = useState({ ...LOCAL_CLOCK_INIT });
 
-  const { state, getData, loading } = useFetch();
+  const {
+    state,
+    getData,
+    loading,
+    create,
+    update,
+    deleteOne,
+    createEvent,
+    deleteOneEvent,
+    patchEvent,
+    deleteByClockId,
+  } = useFetch();
 
   const API_PREFIX = import.meta.env.VITE_API_PREFIX;
   /**
@@ -31,7 +42,13 @@ const useApp = () => {
     deleteEvent,
     deleteEventByClockId,
     eventLoading,
-  } = useEvent(getData);
+  } = useEvent(
+    getData,
+    createEvent,
+    deleteOneEvent,
+    patchEvent,
+    deleteByClockId
+  );
   /**
    * This will be update the local data
    * @param {Object} data
@@ -48,6 +65,7 @@ const useApp = () => {
    */
   const createClock = async (values) => {
     try {
+      create(values);
       // Send the data to the API using Axios
       const response = await axios.post(
         `${API_PREFIX}/clock/clock-create`,
@@ -72,6 +90,7 @@ const useApp = () => {
    */
   const updateClock = async (updateData, clockId) => {
     try {
+      update(clockId, updateData);
       // Send the data to the API using Axios
       const response = await axios.patch(
         `${API_PREFIX}/clock/${clockId}`,
@@ -96,6 +115,7 @@ const useApp = () => {
    */
   const deleteClock = async (id) => {
     try {
+      deleteOne(id);
       // Send the data to the API using Axios
       const response = await axios.delete(`${API_PREFIX}/clock/${id}`);
 

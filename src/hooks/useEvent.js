@@ -4,9 +4,19 @@ import { toast } from "react-toastify";
 /**
  * handle all event with api
  * @param {Function} getData
+ * @param {Function} createEvent
+ * @param {Function} deleteOneEvent
+ * @param {Function} patchEvent
+ * @param {Function} deleteByClockId
  * @returns
  */
-const useEvent = (getData) => {
+const useEvent = (
+  getData,
+  createEvent,
+  deleteOneEvent,
+  patchEvent,
+  deleteByClockId
+) => {
   const API_PREFIX = import.meta.env.VITE_API_PREFIX;
   /**
    * add event function
@@ -15,6 +25,7 @@ const useEvent = (getData) => {
    */
   const addEvent = async (event, clockId) => {
     try {
+      createEvent(event, clockId);
       // Send the data to the API using Axios
       const response = await axios.post(
         `${API_PREFIX}/event/${clockId}`,
@@ -39,6 +50,7 @@ const useEvent = (getData) => {
    */
   const deleteEvent = async (id) => {
     try {
+      deleteOneEvent(id);
       // Send the data to the API using Axios
       const response = await axios.delete(`${API_PREFIX}/event/${id}`);
 
@@ -60,6 +72,7 @@ const useEvent = (getData) => {
    */
   const deleteEventByClockId = async (clockId) => {
     try {
+      deleteByClockId(clockId);
       // Send the data to the API using Axios
       const response = await axios.delete(
         `${API_PREFIX}/event/delete-all/${clockId}`
@@ -84,6 +97,7 @@ const useEvent = (getData) => {
    */
   const updateEvent = async (updatedEvent, id) => {
     try {
+      patchEvent(updatedEvent, id);
       // Send the data to the API using Axios
       const response = await axios.patch(
         `${API_PREFIX}/event/${id}`,
