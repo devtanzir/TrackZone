@@ -87,17 +87,17 @@ const OptionWrapper = styled.div`
   position: absolute;
   margin: 1rem auto;
   width: 80%;
-  height: 76px;
+  height: 280px;
   border-radius: 0.5rem;
   background-color: #fff;
   padding: 1rem;
   border: 1px solid;
   transition: top 0.3s, opacity 0.3s;
   z-index: 9;
-  transform: translateX(73px);
+  transform: translateX(33px);
   overflow-y: scroll;
   visibility: ${(props) => (props.$isOpen ? "visible" : "hidden")};
-  top: ${(props) => (props.$isOpen ? "55px" : "-1rem")};
+  top: ${(props) => (props.$isOpen ? "-204px" : "-1rem")};
   opacity: ${(props) => (props.$isOpen ? "100" : "0")};
   &::-webkit-scrollbar {
     width: 7px;
