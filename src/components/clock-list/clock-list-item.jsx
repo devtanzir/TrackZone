@@ -26,6 +26,7 @@ const ClockListItem = ({
   deleteAllEvent,
 }) => {
   const { date } = useClock(clock.timezone, clock.offset);
+  console.log("called again", Math.random());
 
   const timer = useTimer(date);
 

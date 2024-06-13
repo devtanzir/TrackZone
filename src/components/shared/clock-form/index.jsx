@@ -24,7 +24,9 @@ const ClockForm = ({
     handleFocus,
     handleSubmit,
     cb,
-  } = useClockForm(values, handleClock, handleModal);
+    offset,
+    timezone,
+  } = useClockForm(values, handleClock, handleModal, getOffset, getTimeZone);
   return (
     <ModalForm onSubmit={(e) => handleSubmit(e, cb)}>
       <ModalFormTitle>
@@ -49,7 +51,7 @@ const ClockForm = ({
           name={"timezone"}
           value={state.timezone.value}
           onChange={handleChange}
-          optionValue={getTimeZone}
+          optionValue={timezone}
         />
         {(state.timezone.value === "GMT" || state.timezone.value === "UTC") && (
           <InputGroupContainer
@@ -58,7 +60,7 @@ const ClockForm = ({
             name={"offset"}
             value={state.offset.value / 60}
             onChange={handleChange}
-            optionValue={getOffset}
+            optionValue={offset}
           />
         )}
       </InputWrapper>

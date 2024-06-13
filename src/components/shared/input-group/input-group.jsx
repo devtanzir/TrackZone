@@ -48,7 +48,7 @@ const InputGroupContainer = ({
       )}
       {isSelect && (
         <Select onChange={onChange} name={name} id={name} value={value}>
-          {optionValue().map((timezone) => {
+          {optionValue?.map((timezone) => {
             return (
               <Option key={generateId()} value={timezone}>
                 {timezone}

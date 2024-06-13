@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import useForm from "../../../../hooks/useForm";
 
 /**
@@ -7,8 +8,16 @@ import useForm from "../../../../hooks/useForm";
  * @param {Function} handleModal
  * @returns call the use form hook and pass the value
  */
-const useClockForm = (clockValues, handleClock, handleModal) => {
+const useClockForm = (
+  clockValues,
+  handleClock,
+  handleModal,
+  getOffset,
+  getTimeZone
+) => {
   const init = { ...clockValues };
+  const [offset, setOffset] = useState(null);
+  const [timezone, setTimezone] = useState(null);
   const validate = (values) => {
     const errors = {};
     if (!values.title) {
@@ -38,6 +47,18 @@ const useClockForm = (clockValues, handleClock, handleModal) => {
       handleModal();
     }
   };
+  useEffect(() => {
+    let o = [];
+    let t = [];
+    getOffset().map((item) => {
+      o.push(item);
+    });
+    getTimeZone().map((item) => {
+      t.push(item);
+    });
+    setOffset(o);
+    setTimezone(t);
+  }, []);
   return {
     formState: state,
     handleBlur,
@@ -45,6 +66,8 @@ const useClockForm = (clockValues, handleClock, handleModal) => {
     handleFocus,
     handleSubmit,
     cb,
+    offset,
+    timezone,
   };
 };
 
