@@ -2,7 +2,7 @@ import LocalClock from "../components/local-clock";
 import ClockList from "../components/clock-list";
 import useApp from "./hook/useApp";
 import { MainWrapper } from "./app-style";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {

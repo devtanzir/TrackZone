@@ -49,9 +49,7 @@ const EventForm = ({
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          placeholder={
-            "John is my American Client. He needs a Web Application that will related to timezone"
-          }
+          placeholder={"John is my American Client..."}
           error={state.des.error}
         />
         <InputGroupContainer

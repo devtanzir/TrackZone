@@ -8,6 +8,7 @@ import {
 import useClockForm from "./hook/useClockForm";
 import InputGroupContainer from "../input-group/input-group";
 import PropTypes from "prop-types";
+import BasicSelect from "../../ui/Select";
 
 const ClockForm = ({
   values = { title: "", timezone: "UTC", offset: 0 },
@@ -45,22 +46,20 @@ const ClockForm = ({
           onFocus={handleFocus}
           error={state.title.error}
         />
-        <InputGroupContainer
-          isSelect
+        <BasicSelect
+          options={timezone}
           label={"Enter Timezone : "}
-          name={"timezone"}
           value={state.timezone.value}
-          onChange={handleChange}
-          optionValue={timezone}
+          name={"timezone"}
+          handleChange={handleChange}
         />
         {(state.timezone.value === "GMT" || state.timezone.value === "UTC") && (
-          <InputGroupContainer
-            isSelect
+          <BasicSelect
+            options={offset}
             label={"Enter Offset : "}
-            name={"offset"}
             value={state.offset.value / 60}
-            onChange={handleChange}
-            optionValue={offset}
+            name={"offset"}
+            handleChange={handleChange}
           />
         )}
       </InputWrapper>
